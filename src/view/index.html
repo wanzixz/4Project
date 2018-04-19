@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+  <title>WeUI</title>
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/weui.css">
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/style.css">
+  <!-- remTopx -->
+  <script src="../js/rem.js"></script>
+</head>
+
+<body ontouchstart>
+
+  <div class="container" id="container">
+    <div class="page">
+      <div class="page__bd">
+        <!-- 导航Tab -->
+        <div class="flex tab_nav">
+          <div class="flex_1 tab_item">
+            <a href="###" class="tab_link">
+              未收货
+            </a>
+          </div>
+          <div class="flex_1 tab_item">
+            <a href="###" class="tab_link">
+              运输中
+            </a>
+          </div>
+          <div class="flex_1 tab_item">
+            <a href="###" class="tab_link current">
+              已签收
+            </a>
+          </div>
+        </div>
+        <!-- 搜索 -->
+        <div class="search_bar">
+          <form class="search_bar_form">
+            <div class="search_bar_box">
+                <i class="icon_search"></i>
+                <input type="search" class="search_bar_input" id="js_searchInput" placeholder="请输入订单号/关键字" required>
+                <a href="javascript:;" class="weui-icon-clear" id="js_searchClear"></a>
+            </div>
+          </form>
+        </div>
+        <!-- 订单列表 start -->
+        <div class="order_list_wrapper">
+          <ul>
+            <!-- 循环dom -->
+            <li class="order_list_item">
+              <div class="flex order_hd">
+                <div class="order_hd_left">订单号</div>
+                <div class="flex_1 order_hd_middle text_ellipsis">445279822543</div>
+                <div class="order_hd_right text_ellipsis">身份证未上传</div>
+              </div>
+              <div class="order_bd">
+                <div class="flex order_info">
+                  <div class="order_info_left">收件人</div>
+                  <div class="flex_1 order_info_right text_ellipsis">
+                    <span>克里斯蒂亚诺</span>
+                    <span>13645245624</span>
+                  </div>
+                </div>
+                <div class="flex order_info">
+                    <div class="order_info_left">收件地址</div>
+                    <div class="flex_1 order_info_right text_ellipsis">
+                      <span>深圳市宝安区西乡坪洲地铁站C2</span>
+                    </div>
+                  </div>
+              </div>
+              <div class="order_fd">
+                <a href="###" class="order_btn gray">取消订单</a>
+                <a href="###" class="order_btn">复制订单</a>
+                <a href="###" class="order_btn">修改订单</a>
+              </div>
+            </li>
+            <!-- 循环dom -->
+            <!-- 无加载数据 -->
+            <li class="loading_no_data">
+              没有更多的数据
+            </li>
+            <!-- 无加载数据 -->
+          </ul>
+          <!-- 暂无数据 -->
+          <div class="no_data"></div>
+
+          <!-- 暂无数据 -->
+
+        </div>
+        <!-- 订单列表 end -->
+
+
+      </div>
+    </div>
+  </div>
+  <!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+  <script src="../js/zepto.min.js"></script>
+  <!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+  <script src="../js/main.js"></script>
+</body>
+
+<script>
+  $(function(){
+    // 搜索
+    var $searchInput = $('#js_searchInput'),
+        $searchClear = $('#js_searchClear');
+    //实时查询
+    var valStr,last,that;
+    $searchInput.on('input', function(event){
+      that = $(this);
+      last = event.timeStamp;
+      setTimeout(function(){
+          if(last - event.timeStamp == 0) {
+            valStr =  that.val()
+            console.log(111, valStr)
+          }
+      }, 1000);
+    })
+    //清除搜索
+    $searchClear.on('click',function(){
+      $searchInput.val('')
+    })
+
+    /*==================*/
+
+
+  })
+</script>
+
+</html>
