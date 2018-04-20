@@ -1,13 +1,13 @@
 /*
 * Tencent is pleased to support the open source community by making WeUI available.
-* 
+*
 * Copyright (C) 2017 THL A29 Limited, a Tencent company. All rights reserved.
-* 
+*
 * Licensed under the MIT License (the "License"); you may not use this file except in compliance
 * with the License. You may obtain a copy of the License at
-* 
+*
 *       http://opensource.org/licenses/MIT
-* 
+*
 * Unless required by applicable law or agreed to in writing, software distributed under the License is
 * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 * either express or implied. See the License for the specific language governing permissions and
@@ -64,4 +64,46 @@
     color: @c;
     transform-origin: 100% 0;
     transform: scaleX(0.5);
+}
+
+// 1像素细线
+// 线条参数 (线的粗细[最小是2]、线样色、线类型)
+
+.line{position:relative;z-index:1;}
+.kline(@width:2; @color:#d9d9d9){
+&:after{position:absolute;z-index:1;content:"";left:0;top:0;border:@width/@rem solid @color;width:100%;height:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+}
+.bline,.tline,.lline,.rline{position:relative;}
+.bline(@width:2; @color:#d9d9d9;@style:solid){
+&:after{content:"";position:absolute;z-index:1;left:0;right:0;bottom:(-@width/@rem);border-top:(@width/@rem) @style @color}
+}
+.tline(@width:2;@color:#d9d9d9;@style:solid){
+&:before{content:"";position:absolute;z-index:1;top:(-@width/@rem); left:0;right:0;border-top:(@width/@rem) @style @color;}
+}
+
+.lline(@width:2;@color:#d9d9d9;@style:solid){
+&:before{content:"";position:absolute;z-index:1;top:0;bottom:0;left:(-@width/@rem);border-left:(@width/@rem) @style @color;}
+}
+
+.rline(@width:2;@color:#d9d9d9;@style:solid){
+&:before{content:"";position:absolute;z-index:1;top:0;bottom:0;right:(-@width/@rem);border-right:(@width/@rem) @style @color;}
+}
+.bline.xv:after{border-top-style:dashed;}
+.rline.xv:before{border-right-style:dashed;}
+.dashed:before{border-top-style:dashed;}
+
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),(min-resolution:120dpi),(-ms-high-contrast:active),(-ms-high-contrast:none){
+  .kline:after{width:200%;height:200%;-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5);transform:scale(.5);-webkit-transform-origin:0 0;-moz-transform-origin:0 0;-ms-transform-origin:0 0;-o-transform-origin:0 0;transform-origin:0 0;}
+  .bline:after,.tline:before{-webkit-transform:scaleY(.5);-moz-transform:scaleY(.5);-ms-transform:scaleY(.5);-o-transform:scaleY(.5);transform:scaleY(.5);-webkit-transform-origin:100% 0;-moz-transform-origin:100% 0;-ms-transform-origin:100% 0;-o-transform-origin:100% 0;transform-origin:100% 0;}
+  .lline:before,.rline:before{-webkit-transform:scaleX(.5);-moz-transform:scaleX(.5);-ms-transform:scaleX(.5);-o-transform:scaleX(.5);transform:scaleX(.5);-webkit-transform-origin:0 100%;-moz-transform-origin:0 100%;-ms-transform-origin:0 100%;-o-transform-origin:0 100%;transform-origin:0 100%;}
+}
+@media only screen and (-webkit-device-pixel-ratio:1.5){
+  .kline:after{width:150%;height:150%;-webkit-transform:scale(.6666);-moz-transform:scale(.6666);-ms-transform:scale(.6666);-o-transform:scale(.6666);transform:scale(.6666)}
+  .bline:after,.tline:before{-webkit-transform:scaleY(.6666);-moz-transform:scaleY(.6666);-ms-transform:scaleY(.6666);-o-transform:scaleY(.6666);transform:scaleY(.6666)}
+  .lline:before,.rline:before{-webkit-transform:scaleX(.6666);-moz-transform:scaleX(.6666);-ms-transform:scaleX(.6666);-o-transform:scaleX(.6666);transform:scaleX(.6666)}
+}
+@media only screen and (-webkit-device-pixel-ratio:3){
+  .kline:after{width:300%;height:300%;-webkit-transform:scale(.3333);-moz-transform:scale(.3333);-ms-transform:scale(.3333);-o-transform:scale(.3333);transform:scale(.3333)}
+  .bline:after,.tline:before{-webkit-transform:scaleY(.3333);-moz-transform:scaleY(.3333);-ms-transform:scaleY(.3333);-o-transform:scaleY(.3333);transform:scaleY(.3333)}
+  .lline:before,.rline:before{-webkit-transform:scaleX(.3333);-moz-transform:scaleX(.3333);-ms-transform:scaleX(.3333);-o-transform:scaleX(.3333);transform:scaleX(.3333)}
 }

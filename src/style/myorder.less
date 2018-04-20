@@ -16,8 +16,9 @@ ul{
   list-style: none;
 }
 
-body, .page {
+body{
   background-color: #f1f1f1;
+  -webkit-overflow-scrolling: touch;
 }
 a{
   color: #555;
@@ -35,26 +36,6 @@ a:hover{
 
 /* layout */
 
-.container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-.page {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  opacity: 1;
-  z-index: 1; // fix 滑动几次后可滚动区域会卡住的问题
-}
 // flex
 .flex{
   display: flex;
@@ -70,6 +51,32 @@ a:hover{
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.order_page{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  box-orient: vertical;
+  flex-direction: column;
+
+  .page_hd{
+    //position: fixed;
+    //width: 100%;
+    position: relative;
+    height: 140/@rem;
+    //z-index: 10;
+  }
+  .page_bd{
+    position: relative;
+    // padding-top:140/@rem;
+    flex: 1;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 
 // Tab
 .tab_nav {
@@ -90,21 +97,20 @@ a:hover{
       line-height: 68/@rem;
       font-size: 24/@rem;
       color: #adadad;
-      &.current{
-        color: #0b8ef3;
-      }
-      &.current:after{
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 98/@rem;
-        height: 3/@rem;
-        background-color: #0b8ef3;
-      }
     }
-
+    &.current .tab_link{
+      color: #0b8ef3;
+    }
+    &.current .tab_link:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 98/@rem;
+      height: 3/@rem;
+      background-color: #0b8ef3;
+    }
   }
 }
 // search
@@ -130,7 +136,7 @@ a:hover{
       position: absolute;
       left: 0;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-60%);
       width: 28/@rem;
       height: 28/@rem;
       background: url(../images/icon_search.png) no-repeat;
@@ -141,7 +147,7 @@ a:hover{
       width: 100%;
       height: 30/@rem;
       border: none;
-      font-size: 28/@rem;
+      font-size: 24/@rem;
       line-height: 30/@rem;
       box-sizing: content-box;
       background: transparent;
@@ -149,7 +155,7 @@ a:hover{
         outline: none;
       }
     }
-    .weui-icon-clear {
+    .weui_icon_clear {
       display: inline-block;
       position: absolute;
       top: -10/@rem;
@@ -162,7 +168,7 @@ a:hover{
         font-size: 28/@rem;
       }
     }
-    .search_bar_input:not(:valid) ~ .weui-icon-clear {
+    .search_bar_input:not(:valid) ~ .weui_icon_clear {
       display: none;
     }
   }
@@ -177,7 +183,11 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 /* 订单 */
-
+.order_list_wrapper{
+  display: none;
+  position: relative;
+  z-index: 10;
+}
 .order_list_item{
   margin-top: 12/@rem;
   background-color: #fff;
@@ -190,7 +200,7 @@ input[type="search"]::-webkit-search-results-decoration {
       z-index: 2;
     }
     .order_hd_left{
-      width: 4em;
+      width: 5em;
       margin-right: 20/@rem;
       font-size: 20/@rem;
       color: #808080;
@@ -213,10 +223,17 @@ input[type="search"]::-webkit-search-results-decoration {
     padding: 8/@rem 0;
     line-height: 1;
     .order_info_left{
-      width: 4em;
-      margin-right: 20/@rem;
-      font-size: 20/@rem;
+      width: 5em;
+      //margin-right: 20/@rem;
+      font-size: 24/@rem;
       color: #808080;
+    }
+    .order_info_right{
+      .order_depot{
+        color: #fc5a1d;
+        font-weight: 400;
+        margin-left:-6px;
+      }
     }
     .order_hd_right{
       font-size: 24/@rem;
@@ -235,33 +252,45 @@ input[type="search"]::-webkit-search-results-decoration {
       font-size: 22/@rem;
       color:#1b9bfe;
       line-height: 1;
-      border:2/@rem solid #1b9bfe;
-      border-radius: 6/@rem;
+      position: relative;
+      // border:2/@rem solid #1b9bfe;
+      .kline(2,#1b9bfe);
+      &:after{
+        border-radius: 6/@rem;
+      }
       &.gray{
         color: #585858;
+      }
+      &.gray:after{
         border-color: #b5b5b5;
       }
     }
   }
 }
-.loading_no_data{
+// 上拉下拉加载
+.loading_no_data, .dropload_refresh, .dropload_load, .dropload_update{
   display: block;
   text-align: center;
   padding: 40/@rem;
   font-size: 22/@rem;
   color:#999;
+  position: relative;
+}
+.dropload_load .weui-loading{
+  margin-top:-2px;
 }
 .no_data{
   width: 265/@rem;
   height: 177/@rem;
   background: url(../images/no_data.png) no-repeat;
   background-size: 265/@rem 177/@rem;
-  margin: 30% auto 0;
+  margin: 30% auto 100/@rem;
   &::after{
-    content: '暂无数据呦！';
+    content: '暂无数据呦!';
     display: block;
     width: 100%;
     text-align: center;
+    text-indent: 0.2em;
     padding-top: 200/@rem;
     font-size: 28/@rem;
     color: #79787a;
