@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>订单详情</title>
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/weui.css">
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/order_detail.css">
+  <!-- remTopx -->
+  <script src="../js/rem.js"></script>
+</head>
+
+<body>
+
+  <div class="container" id="container">
+    <div class="order_detail_page">
+      <!-- 订单号 -->
+      <div class="flex order_number">
+        <div class="text">订单号</div>
+        <div class="flex_1 number">445279822543</div>
+        <div class="tips">未交货</div>
+      </div>
+      <!-- 寄收信息 -->
+      <div class="order_address_wrapper">
+        <!-- 寄件信息 -->
+        <div class="flex order_address_info">
+          <div class="left sender"></div>
+          <div class="flex_1 right">
+            <div class="address_up text_ellipsis">
+              <span class="name">比尔盖茨</span>
+              <span class="tel">18615912356</span>
+            </div>
+            <div class="address_down">
+              <p class="address"></p>
+            </div>
+          </div>
+        </div>
+        <!-- 收件信息 -->
+        <div class="flex order_address_info tline">
+          <div class="left receiving"></div>
+          <div class="flex_1 right">
+            <div class="address_up text_ellipsis">
+              <span class="name">比尔盖茨</span>
+              <span class="tel">18615912356</span>
+            </div>
+            <div class="address_down">
+              <p> <strong class="order_depot">【四方格-铜锣湾自提仓】</strong>广东省深圳市宝安区航空物流园国际货运村201-221</p>
+              <p class="address">
+                <span>412826198906286044</span>
+                <span class="upload">(身份证已上传)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 包裹信息 -->
+      <div class="order_package_info">
+        <div class="package_title bline">
+          包裹信息
+        </div>
+        <ul class="flex package_box">
+          <li class="left word_break">产品服务</li>
+          <li class="flex_1 right">USPS标准服务</li>
+        </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">下单时间</li>
+          <li class="flex_1 right">2017-07-12 14:12</li>
+        </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">购买保险</li>
+          <li class="flex_1 right">A$258</li>
+        </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">申报物品</li>
+          <li class="flex_1 right">6件</li>
+        </ul>
+
+        <!-- 商品列表 -->
+        <div class="flex package_info_box">
+          <div class="flex_1 name">美素佳儿金装幼儿配方奶粉美素佳儿</div>
+          <div class="rule">900g</div>
+          <div class="count">3件</div>
+        </div>
+        <div class="flex package_info_box">
+            <div class="flex_1 name">美素佳儿金装幼儿配方奶粉</div>
+            <div class="rule">900g</div>
+            <div class="count">3件</div>
+          </div>
+        <div class="flex package_info_box">
+          <div class="flex_1 name">美素佳儿金装幼儿配方奶粉</div>
+          <div class="rule">900g</div>
+          <div class="count">3件</div>
+        </div>
+
+        <!-- 订单其他信息 -->
+        <div class="flex package_other_info tline">
+          <div class="left">备注信息</div>
+          <div class="flex_1 right">
+            <textarea class="package_textarea" onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'" placeholder="输入备注信息"></textarea>
+          </div>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="package_btn_box">
+          <a href="###" class="btn kline">查看物流</a>
+          <a href="###" class="btn kline margin_left">再来一单</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

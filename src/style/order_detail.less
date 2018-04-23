@@ -1,0 +1,200 @@
+/* reset */
+@import "./base/fn";
+
+// 我的订单详情
+.order_number{
+  background: #f1f1f1;
+  height: 62/@rem;
+  padding:0 30/@rem;
+  line-height: 62/@rem;
+  font-size: 22/@rem;
+  .text{
+    color: #a3a3a3;
+    white-space: nowrap;
+  }
+  .number{
+    margin: 0 20/@rem;
+  }
+  .tips{
+    color: #fa1b1b;
+    &.yellow{
+      color: #f3821e;
+    }
+    &.blue{
+      color: #0c92f9;
+    }
+  }
+}
+// 订单详情 物流地址
+.order_address_wrapper{
+  position: relative;
+  background: #fff;
+  padding: 0 30/@rem;
+}
+.order_address_info{
+  position: relative;
+  padding: 15/@rem 0;
+  &.tline{
+    .tline(1,#e5e5e5,solid)
+  }
+  .left{
+    width: 58/@rem;
+    height: 58/@rem;
+    border-radius: 50%;
+    &:after{
+      display: block;
+      width: 58/@rem;
+      height: 58/@rem;
+      line-height: 58/@rem;
+      text-align: center;
+      font-size: 28/@rem;
+      color: #fff;
+      border-radius: 50%;
+    }
+    &.sender:after{
+      content: '寄';
+      background: #1d9cfe;
+    }
+    &.receiving:after{
+      content: '收';
+      background: #fc9c47;
+    }
+  }
+  .right{
+    margin-left: 30/@rem;
+    .address_up{
+      font-size: 24/@rem;
+      color: #222;
+      line-height: 1.5;
+      .name{
+        margin-right: 44/@rem;
+      }
+    }
+    .address_down{
+      line-height: 1.5;
+      font-size: 22/@rem;
+      color: #343434;
+      .order_depot{
+        color: #fc5a1d;
+        font-weight: 400;
+        margin-left:-6px;
+      }
+      .un_upload{
+        color: #f74141;
+      }
+      .upload{
+        color: #1d9cfe;
+      }
+    }
+  }
+}
+// 包裹信息
+.order_package_info{
+  position: relative;
+  margin-top: 14/@rem;
+  padding: 0 30/@rem;
+  background: #fff;
+  .package_title{
+    height: 58/@rem;
+    line-height: 58/@rem;
+    position: relative;
+    margin-bottom: 10/@rem;
+    font-size: 24/@rem;
+    color: #222;
+    font-weight: 400;
+    &.bline{
+      .bline(1,#e5e5e5,solid)
+    }
+  }
+  .package_box{
+    line-height: 36/@rem;
+    .left{
+      min-width: 4em;
+      font-size: 24/@rem;
+      color: #737373;
+      margin-right: 72/@rem;
+    }
+    .right{
+      color: #343434;
+      font-size: 24/@rem;
+    }
+  }
+  .package_info_box{
+    position: relative;
+    margin: 10/@rem 0;
+    &.bline{
+      .bline(1,#e5e5e5,solid)
+    }
+  }
+  .package_info_box{
+    line-height: 36/@rem;
+    font-size: 24/@rem;
+    color:#000;
+    align-items: flex-start;
+    overflow: hidden;
+    .name{
+      font-size: 24/@rem;
+      color: #000;
+      line-height: 1.2;
+    }
+    .rule{
+      color: #fff;
+      padding: 0 15/@rem;
+      border-radius: 3/@rem;
+      background:#adc9ef;
+      margin: 0 30/@rem;
+    }
+    .count{
+
+    }
+  }
+  .package_other_info{
+    align-items:flex-start;
+    position: relative;
+    top: 10/@rem;
+    padding: 15/@rem 0;
+    &.tline{
+      .tline(1,#e5e5e5,solid)
+    }
+    .left{
+      min-width: 4em;
+      font-size: 24/@rem;
+      color: #737373;
+      margin-right: 72/@rem;
+    }
+    .package_textarea{
+      width: 100%;
+      font-size: 24/@rem;
+      margin-top: 6/@rem;
+      min-height: 44/@rem;
+      background: none;
+      -webkit-appearance: none;
+      border:none;
+      &:focus{
+        outline: none;
+      }
+    }
+  }
+  .package_btn_box{
+    padding: 30/@rem 0;
+    text-align: right;
+    .btn{
+      display: inline-block;
+      position: relative;
+      padding:6/@rem 14/@rem;
+      font-size: 24/@rem;
+      color: #0286e3;
+      border-radius: 6/@rem;
+      .kline(2,#0286e3);
+      &:after{
+        border-radius: 6/@rem;
+      }
+      &.margin_left{
+        margin-left: 23/@rem;
+      }
+    }
+  }
+
+}
+
+

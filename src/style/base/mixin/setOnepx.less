@@ -75,7 +75,7 @@
 }
 .bline,.tline,.lline,.rline{position:relative;}
 .bline(@width:2; @color:#d9d9d9;@style:solid){
-&:after{content:"";position:absolute;z-index:1;left:0;right:0;bottom:(-@width/@rem);border-top:(@width/@rem) @style @color}
+&:after{content:"";position:absolute;z-index:1;left:0;right:0;bottom:0;border-top:(@width/@rem) @style @color}
 }
 .tline(@width:2;@color:#d9d9d9;@style:solid){
 &:before{content:"";position:absolute;z-index:1;top:(-@width/@rem); left:0;right:0;border-top:(@width/@rem) @style @color;}
