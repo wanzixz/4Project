@@ -107,8 +107,7 @@
         <div class="flex package_other_info tline">
           <div class="left">备注信息</div>
           <div class="flex_1 right">
-            <textarea class="package_textarea" onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'"
-              placeholder="输入备注信息"></textarea>
+            <div class="package_textarea">1231313</div>
           </div>
         </div>
 
@@ -139,44 +138,62 @@
         </div>
         <!-- 自提店 列表 -->
         <div class="flex_1 weui_action_wrapper " style="display: block">
-          <div class="weui_actionsheet_item bline">
-            <div class="name">四方格-观塘自提仓</div>
-            <div class="address">
-              <i class="icon_address"></i>
-              <span>香港九龙观塘道448-458号观塘</span>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="1">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
             </div>
+            <div class="tel word_break">00852-35848036</div>
           </div>
-          <div class="weui_actionsheet_item bline">
-            <div class="name">四方格-观塘自提仓</div>
-            <div class="address">
-              <i class="icon_address"></i>
-              <span>香港九龙观塘道448-458号观塘</span>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="2">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
             </div>
+            <div class="tel word_break">00852-35848036</div>
           </div>
-          <div class="weui_actionsheet_item bline">
-            <div class="name">四方格-观塘自提仓</div>
-            <div class="address">
-              <i class="icon_address"></i>
-              <span>香港九龙观塘道448-458号观塘</span>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="3">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
             </div>
+            <div class="tel word_break">00852-35848036</div>
           </div>
-          <div class="weui_actionsheet_item bline">
-            <div class="name">四方格-观塘自提仓</div>
-            <div class="address">
-              <i class="icon_address"></i>
-              <span>香港九龙观塘道448-458号观塘</span>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="4">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
             </div>
+            <div class="tel word_break">00852-35848036</div>
           </div>
-          <div class="weui_actionsheet_item bline">
-            <div class="name">四方格-观塘自提仓</div>
-            <div class="address">
-              <i class="icon_address"></i>
-              <span>香港九龙观塘道448-458号观塘</span>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="5">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
             </div>
+            <div class="tel word_break">00852-35848036</div>
           </div>
         </div>
+        <!-- 空数据 -->
         <div class="flex_1 weui_action_wrapper ">
+
         </div>
+        <!-- 空数据 -->
         <div class="flex_1 weui_action_wrapper ">
 
         </div>
@@ -220,30 +237,33 @@
       $('.weui_action_wrapper').eq(itemIndex).show().siblings('.weui_action_wrapper').hide();
       var isData = false // 无数据
       // loading 和暂无数据
-      fnLoading(itemIndex,isData)
+      if (itemIndex) {
+        fnLoading(itemIndex, isData)
+      }
+
 
 
 
 
     })
 
-    function fnLoading(itemIndex,isData){  // 必填 参数 itemIndex 切换索引， 是否有加载到数据 isData 布尔值
-      var $loadMore =  $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').length
+    function fnLoading(itemIndex, isData) {  // 必填 参数 itemIndex 切换索引， 是否有加载到数据 isData 布尔值
+      var $loadMore = $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').length
       // 切换之前 先删除 loding dom 和 暂无数据dom
       $('.weui_action_wrapper').eq(itemIndex).find('.weui_loading_wrapper').remove();
       $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').remove();
       // 添加加载动画 loading
       $('.weui_action_wrapper').eq(itemIndex).append(loadingTmp);
       // 3s 之后 如果数据还没用加载完 移除loading 添加 暂无数据dom
-      var Time = setInterval(function(){
+      var Time = setInterval(function () {
         $('.weui_action_wrapper').eq(itemIndex).find('.weui_loading_wrapper').remove();
         // 删除暂无数据dom
-        if(!isData){
+        if (!isData) {
           $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').remove();
           $('.weui_action_wrapper').eq(itemIndex).append(noDataTmp)
         }
         clearInterval(Time)
-      },3000)
+      }, 3000)
 
     }
 
@@ -251,13 +271,27 @@
       $iosActionsheet.removeClass('weui_actionsheet_toggle');
       $iosMask.removeClass('weui_mask_visible');
     }
-
+    // 关闭弹层
     $iosMask.on('click', hideActionSheet);
     $('#actionClose').on('click', hideActionSheet);
+    // 展示弹层
     $("#showIOSActionSheet").on("click", function () {
       $iosActionsheet.addClass('weui_actionsheet_toggle');
       $iosMask.addClass('weui_mask_visible');
     });
+
+    // 选择地址
+    $('.js_actionsheetItem').on('click', function () {
+      var id = $(this).data('id')
+      $.toast("你选择了第" + id + "条地址");
+      // 关闭弹层
+      hideActionSheet();
+    })
+
+
+
+
+
   });
 
 
