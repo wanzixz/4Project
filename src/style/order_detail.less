@@ -3,14 +3,14 @@
 @path:'../images/';
 
 // 我的订单详情
+
 .order_number{
-  background: #f1f1f1;
   height: 62/@rem;
   padding:0 30/@rem;
   line-height: 62/@rem;
   font-size: 22/@rem;
   .text{
-    color: #a3a3a3;
+    color: #343434;
     white-space: nowrap;
   }
   .number{
@@ -108,7 +108,7 @@
     }
   }
   .package_box{
-    line-height: 36/@rem;
+    line-height: 48/@rem;
     .left{
       min-width: 4em;
       font-size: 24/@rem;
@@ -134,11 +134,12 @@
     align-items: flex-start;
     overflow: hidden;
     .name{
-      font-size: 24/@rem;
+      font-size: 22/@rem;
       color: #000;
       line-height: 1.2;
     }
     .rule{
+      font-size: 22/@rem;
       color: #fff;
       padding: 0 15/@rem;
       border-radius: 3/@rem;
@@ -146,7 +147,7 @@
       margin: 0 30/@rem;
     }
     .count{
-
+      font-size: 22/@rem;
     }
   }
   .package_other_info{
@@ -166,7 +167,6 @@
     .package_textarea{
       width: 100%;
       font-size: 24/@rem;
-      margin-top: 4/@rem;
       min-height: 44/@rem;
       background: none;
       -webkit-appearance: none;
@@ -226,13 +226,14 @@
     .icon_close{
       display: block;
       position: absolute;
-      width: 50/@rem;
+      width: 100/@rem;
       height: 50/@rem;
+      padding: 0 30/@rem;
       text-align: center;
       line-height: 50/@rem;
       top: 50%;
       transform: translateY(-50%);
-      right: 30/@rem;
+      right: 0;
       z-index: 10;
       &:before,&:after{
         content: '';
@@ -241,8 +242,8 @@
         width: 24/@rem;
         height: 2/@rem;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, 50%);
+        right: 30/@rem;
+        // transform: translate(-50%, 50%);
         margin-top: -1px;
         background: #a6a6a6;
       }
@@ -300,15 +301,11 @@
         position: relative;
         padding: 10/@rem 30/@rem;
         width: 100%;
-        margin-top: 1/@rem;
         -webkit-user-select: none;
         align-items: flex-start;
         box-sizing: border-box;
         &.bline{
           .bline(1,#c2c2c2);
-          :after{
-            top: 1/@rem;
-          }
         }
         &.bline:last-child{
           :after{
