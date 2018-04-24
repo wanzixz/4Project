@@ -19,6 +19,10 @@
 
   <div class="container" id="container">
     <div class="order_page">
+      <!-- 提示 下单成功未收货 -->
+      <div class="order_unreceiving js_orderUnreceiving">
+        <i class="weui_icon_info_circle"></i>下单成功,请前往门店交货！
+      </div>
       <div class="page_hd">
         <!-- 导航Tab -->
         <div class="flex tab_nav">
@@ -103,12 +107,14 @@
       </div>
     </div>
   </div>
-  <!-- zepto 库 如果项目中有引用 不需要再次引入 -->
-  <script src="../js/zepto.min.js"></script>
-  <!-- zepto 库 如果项目中有引用 不需要再次引入 -->
-  <script src="../js/main.js"></script>
-  <script src="../js/updown.js"></script>
+
 </body>
+ <!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+ <script src="../js/zepto.min.js"></script>
+ <!-- 封装常用库  -->
+ <script src="../js/main.js"></script>
+ <!-- 下拉菜单组件 -->
+ <script src="../js/updown.js"></script>
 
 <script>
   $(function () {
@@ -137,6 +143,12 @@
       $('.dropload-down').show();
       // 切换时清空li
       $('.order_list_wrapper').eq(itemIndex).find('ul').html('');
+      if(itemIndex == 0){
+        // 提示未交货
+        $('.js_orderUnreceiving').show()
+      } else{
+        $('.js_orderUnreceiving').hide()
+      }
       // 如果选中菜单一
       if (itemIndex == 0) {
         page = 0;
@@ -203,7 +215,7 @@
     /*==================*/
     // 下拉加载
     var dropload = $('.order_page .page_bd').dropload({
-      // scrollArea: window,
+      scrollArea: window,
       autoLoad: true, //自动加载
       domUp: {
         domClass: 'dropload-up',

@@ -19,11 +19,16 @@
 
   <div class="container" id="container">
     <div class="order_detail_page">
+      <!-- 提示 下单成功未收货 -->
+      <div class="order_unreceiving">
+        <i class="weui_icon_info_circle"></i>下单成功请前往门店交货！
+      </div>
+
       <!-- 订单号 -->
       <div class="flex order_number">
         <div class="text">订单号</div>
         <div class="flex_1 number">445279822543</div>
-        <div class="tips">未交货</div>
+        <div class="tips">未收货</div>
       </div>
       <!-- 寄收信息 -->
       <div class="order_address_wrapper">
@@ -49,7 +54,8 @@
               <span class="tel">18615912356</span>
             </div>
             <div class="address_down">
-              <p> <strong class="order_depot">【四方格-铜锣湾自提仓】</strong>广东省深圳市宝安区航空物流园国际货运村201-221</p>
+              <p>
+                <strong class="order_depot">【四方格-铜锣湾自提仓】</strong>广东省深圳市宝安区航空物流园国际货运村201-221</p>
               <p class="address">
                 <span>412826198906286044</span>
                 <span class="upload">(身份证已上传)</span>
@@ -87,10 +93,10 @@
           <div class="count">3件</div>
         </div>
         <div class="flex package_info_box">
-            <div class="flex_1 name">美素佳儿金装幼儿配方奶粉</div>
-            <div class="rule">900g</div>
-            <div class="count">3件</div>
-          </div>
+          <div class="flex_1 name">美素佳儿金装幼儿配方奶粉</div>
+          <div class="rule">900g</div>
+          <div class="count">3件</div>
+        </div>
         <div class="flex package_info_box">
           <div class="flex_1 name">美素佳儿金装幼儿配方奶粉</div>
           <div class="rule">900g</div>
@@ -101,19 +107,162 @@
         <div class="flex package_other_info tline">
           <div class="left">备注信息</div>
           <div class="flex_1 right">
-            <textarea class="package_textarea" onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'" placeholder="输入备注信息"></textarea>
+            <textarea class="package_textarea" onpropertychange="this.style.height=this.scrollHeight + 'px'" oninput="this.style.height=this.scrollHeight + 'px'"
+              placeholder="输入备注信息"></textarea>
           </div>
         </div>
 
         <!-- 按钮 -->
         <div class="package_btn_box">
-          <a href="###" class="btn kline">查看物流</a>
+          <a href="###" class="btn kline gray js_cancelBtn">取消订单</a>
+          <a href="###" class="btn kline margin_left" id="showIOSActionSheet">查看物流</a>
           <a href="###" class="btn kline margin_left">再来一单</a>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- 自提店 -->
+  <div>
+    <div class="weui_mask" id="iosMask"></div>
+    <div class="weui_actionsheet " id="iosActionsheet">
+      <div class="weui_actionsheet_title">
+        <p class="weui_actionsheet_title_text">选择自提店</p>
+        <i class="icon icon_close" id="actionClose"></i>
+      </div>
+
+      <div class="flex weui_actionsheet_menu">
+        <div class="flex weui_action_tab bline">
+          <div class="flex_1 tab_item current">香港岛</div>
+          <div class="flex_1 tab_item">九龙半岛</div>
+          <div class="flex_1 tab_item">新界</div>
+        </div>
+        <!-- 自提店 列表 -->
+        <div class="flex_1 weui_action_wrapper " style="display: block">
+          <div class="weui_actionsheet_item bline">
+            <div class="name">四方格-观塘自提仓</div>
+            <div class="address">
+              <i class="icon_address"></i>
+              <span>香港九龙观塘道448-458号观塘</span>
+            </div>
+          </div>
+          <div class="weui_actionsheet_item bline">
+            <div class="name">四方格-观塘自提仓</div>
+            <div class="address">
+              <i class="icon_address"></i>
+              <span>香港九龙观塘道448-458号观塘</span>
+            </div>
+          </div>
+          <div class="weui_actionsheet_item bline">
+            <div class="name">四方格-观塘自提仓</div>
+            <div class="address">
+              <i class="icon_address"></i>
+              <span>香港九龙观塘道448-458号观塘</span>
+            </div>
+          </div>
+          <div class="weui_actionsheet_item bline">
+            <div class="name">四方格-观塘自提仓</div>
+            <div class="address">
+              <i class="icon_address"></i>
+              <span>香港九龙观塘道448-458号观塘</span>
+            </div>
+          </div>
+          <div class="weui_actionsheet_item bline">
+            <div class="name">四方格-观塘自提仓</div>
+            <div class="address">
+              <i class="icon_address"></i>
+              <span>香港九龙观塘道448-458号观塘</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex_1 weui_action_wrapper ">
+        </div>
+        <div class="flex_1 weui_action_wrapper ">
+
+        </div>
+        <!-- 自提店 列表 -->
+      </div>
+    </div>
+  </div>
+
 </body>
+<!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+<script src="../js/zepto.min.js"></script>
+<!-- 封装常用库  -->
+<script src="../js/main.js"></script>
+<script>
+
+  $(function () {
+
+    // 取消订单
+    $(document).on("click", ".js_cancelBtn", function () {
+      $.confirm("确定要取消该订单吗?", "", function () {
+        //确定操作
+        $.toast("取消成功!");
+      }, function () {
+        //取消操作
+      });
+    });
+
+    // 自提点
+    var $iosActionsheet = $('#iosActionsheet');
+    var $iosMask = $('#iosMask');
+    var $actionSheetTab = $('.weui_action_tab .tab_item');
+    // 正在加载 dom
+    var loadingTmp = '<div class="weui_loading_wrapper"><span class="weui-loading"></span>正在加载中...</div>';
+    // 暂无数据 dom
+    var noDataTmp = '<div class="weui_loadmore weui_loadmore_line"><span class="weui_loadmore_tips">暂无数据</span></div>';
+
+    $actionSheetTab.on('click', function () {
+      var $this = $(this)
+      itemIndex = $this.index();
+      $this.addClass('current').siblings('.tab_item').removeClass('current');
+      $('.weui_action_wrapper').eq(itemIndex).show().siblings('.weui_action_wrapper').hide();
+      var isData = false // 无数据
+      // loading 和暂无数据
+      fnLoading(itemIndex,isData)
+
+
+
+
+    })
+
+    function fnLoading(itemIndex,isData){  // 必填 参数 itemIndex 切换索引， 是否有加载到数据 isData 布尔值
+      var $loadMore =  $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').length
+      // 切换之前 先删除 loding dom 和 暂无数据dom
+      $('.weui_action_wrapper').eq(itemIndex).find('.weui_loading_wrapper').remove();
+      $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').remove();
+      // 添加加载动画 loading
+      $('.weui_action_wrapper').eq(itemIndex).append(loadingTmp);
+      // 3s 之后 如果数据还没用加载完 移除loading 添加 暂无数据dom
+      var Time = setInterval(function(){
+        $('.weui_action_wrapper').eq(itemIndex).find('.weui_loading_wrapper').remove();
+        // 删除暂无数据dom
+        if(!isData){
+          $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').remove();
+          $('.weui_action_wrapper').eq(itemIndex).append(noDataTmp)
+        }
+        clearInterval(Time)
+      },3000)
+
+    }
+
+    function hideActionSheet() {
+      $iosActionsheet.removeClass('weui_actionsheet_toggle');
+      $iosMask.removeClass('weui_mask_visible');
+    }
+
+    $iosMask.on('click', hideActionSheet);
+    $('#actionClose').on('click', hideActionSheet);
+    $("#showIOSActionSheet").on("click", function () {
+      $iosActionsheet.addClass('weui_actionsheet_toggle');
+      $iosMask.addClass('weui_mask_visible');
+    });
+  });
+
+
+
+
+</script>
 
 </html>

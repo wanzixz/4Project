@@ -1,5 +1,6 @@
 /* reset */
 @import "./base/fn";
+@path:'../images/';
 
 // text-ellipsis
 .text_ellipsis{
@@ -94,7 +95,7 @@
       transform: translateY(-50%);
       width: 28/@rem;
       height: 28/@rem;
-      background: url(../images/icon_search.png) no-repeat;
+      background: url('@{path}icon_search.png') no-repeat;
       background-size: 28/@rem 28/@rem;
     }
     .search_bar_input{
@@ -208,13 +209,22 @@ input[type="search"]::-webkit-search-results-decoration {
       color:#1b9bfe;
       line-height: 1;
       position: relative;
+      border-radius: .06rem;
       // border:2/@rem solid #1b9bfe;
       .kline(2,#1b9bfe);
+      &:active{
+        color: #fff;
+        background: #0286e3;
+      }
       &:after{
         border-radius: 6/@rem;
       }
       &.gray{
         color: #585858;
+        &:active{
+          color: #585858;
+          background: #f1f1f1;
+        }
       }
       &.gray:after{
         border-color: #b5b5b5;
@@ -237,7 +247,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .no_data{
   width: 265/@rem;
   height: 177/@rem;
-  background: url(../images/no_data.png) no-repeat;
+  background: url('@{path}/no_data.png') no-repeat;
   background-size: 265/@rem 177/@rem;
   margin: 30% auto 100/@rem;
   &::after{
