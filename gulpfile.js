@@ -12,6 +12,7 @@ var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var pkg = require('./package.json');
+var imageMini = require('gulp-imagemin');
 var yargs = require('yargs').options({
   w: {
     alias: 'watch',
@@ -71,6 +72,9 @@ gulp.task('build:style', function() {
 gulp.task('build:images', function() {
   gulp
     .src('src/**/*.?(png|jpg|gif)', option)
+    .pipe(imageMini({
+      progressive: true
+    }))
     .pipe(gulp.dest(dist))
     .pipe(browserSync.reload({ stream: true }));
 });
@@ -121,7 +125,7 @@ gulp.task('release', ['build:images', 'build:style','build:js','build:view']);
 gulp.task('watch', ['release'], function() {
   gulp.watch('src/style/**/*', ['build:style']);
   gulp.watch('src/style/*.less', ['build:style']);
-  gulp.watch('src/**/*.?(png|jpg|gif|js)', ['build:images']);
+  gulp.watch('src/**/*.?(png|jpg|gif)', ['build:images']);
   gulp.watch('src/**/*.?(js)', ['build:js']);
   gulp.watch('src/view/*.html', ['build:view']);
 });

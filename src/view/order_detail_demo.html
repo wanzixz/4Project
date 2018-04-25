@@ -10,7 +10,7 @@
   <!-- weui 样式 如果项目有引用 不需要再引入 -->
   <link rel="stylesheet" href="../style/weui.css">
   <!-- weui 样式 如果项目有引用 不需要再引入 -->
-  <link rel="stylesheet" href="../style/order_detail.css">
+  <link rel="stylesheet" href="../style/order_detail_demo.css">
   <!-- remTopx -->
   <script src="../js/rem.js"></script>
 </head>
@@ -23,7 +23,14 @@
       <div class="order_unreceiving">
         <i class="weui_icon_info_circle"></i>下单成功请前往门店交货！
       </div>
-
+      <!-- 条码 -->
+      <div class="order_code">
+        <div class="code_text">门店交货时，请出示条码</div>
+        <div class="code_img">
+          <img src="../images/code_img.jpg" alt="">
+        </div>
+        <div class="code_number">1780564032565465</div>
+      </div>
       <!-- 订单号 -->
       <div class="flex order_number">
         <div class="text">订单号</div>
@@ -66,7 +73,7 @@
       </div>
       <!-- 包裹信息 -->
       <div class="order_package_info">
-        <div class="package_title bline">
+        <div class="package_title bline ">
           包裹信息
         </div>
         <ul class="flex package_box">
@@ -85,37 +92,45 @@
           <li class="left word_break">申报物品</li>
           <li class="flex_1 right">6件</li>
         </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">备注信息</li>
+          <li class="flex_1 right">这里是我填写的备注信息</li>
+        </ul>
+      </div>
+      <div class="order_package_info">
+        <div class="package_title bline margin_bottom20">
+          商品明细
+        </div>
         <!-- 商品列表 -->
         <div class="flex package_info_box">
-          <div class="flex_1 name">美素佳儿金装幼儿配方奶粉美素佳儿</div>
-          <div class="rule">900g</div>
-          <div class="count">3件</div>
+          <div class="flex_1 name">美素佳儿<span class="shop_name">金装幼儿配方奶粉</span><em class="rule_text">900g</em></div>
+          <div class="count">10件</div>
         </div>
         <div class="flex package_info_box">
-          <div class="flex_1 name">美素佳儿金装幼儿配方奶粉</div>
-          <div class="rule">900g</div>
-          <div class="count">3件</div>
+          <div class="flex_1 name">美素佳儿<span class="shop_name">金装幼儿配方奶粉</span><em class="rule_text">900g</em></div>
+          <div class="count">2件</div>
         </div>
         <div class="flex package_info_box">
-          <div class="flex_1 name">美素佳儿金装幼儿配方奶粉</div>
-          <div class="rule">900g</div>
-          <div class="count">3件</div>
-        </div>
-        <!-- 订单其他信息 -->
-        <div class="flex package_other_info tline">
-          <div class="left">备注信息</div>
-          <div class="flex_1 right">
-            <div class="package_textarea">备注信息</div>
-          </div>
-        </div>
-
-        <!-- 按钮 -->
-        <div class="package_btn_box">
-          <a href="###" class="btn kline gray js_cancelBtn">取消订单</a>
-          <a href="###" class="btn kline margin_left" id="showIOSActionSheet">查看物流</a>
-          <a href="###" class="btn kline margin_left">再来一单</a>
+          <div class="flex_1 name">美素佳儿<span class="shop_name">金装幼儿配方奶粉</span><em class="rule_text">900g一段</em></div>
+          <div class="count">1件</div>
         </div>
       </div>
+
+      <!-- 订单其他信息 -->
+      <!-- <div class="order_package_info">
+        <div class="package_title bline">
+            备注信息
+        </div>
+        <div class="package_textarea">这里是我填写的备注信息</div>
+      </div> -->
+      <!-- 按钮 -->
+      <div class="package_btn_box">
+        <a href="###" class="btn kline gray js_cancelBtn">取消订单</a>
+        <a href="###" class="btn kline blue  margin_left" id="showIOSActionSheet">查看物流</a>
+        <a href="###" class="btn kline yellow margin_left">再来一单</a>
+      </div>
+
+
     </div>
   </div>
 
@@ -124,7 +139,7 @@
     <div class="weui_mask" id="iosMask"></div>
     <div class="weui_actionsheet " id="iosActionsheet">
       <div class="weui_actionsheet_title">
-        <p class="weui_actionsheet_title_text">选择自提店</p>
+        <p class="weui_actionsheet_title_text">选择自提点</p>
         <i class="icon icon_close" id="actionClose"></i>
       </div>
 
