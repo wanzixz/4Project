@@ -1,0 +1,98 @@
+/* reset */
+@import "./base/fn";
+@path:'../images/';
+
+.express_detail_page{
+  position: relative;
+  background-color: #fff;
+}
+// 物流详情图片区
+.express_detail_h{
+  height: 200/@rem;
+  text-align: center;
+  .h_img{
+    max-width: 100%;
+    border: none;
+  }
+}
+// 物流单信息
+.express_detail_info{
+  padding: 0 30/@rem;
+  background: #fff;
+  .express_line{
+    position: relative;
+    padding: 16/@rem 0;
+    .bline(1,#f1f1f1);
+    .icon_sender, .icon_receiving{
+      display: inline-block;
+      width: 18/@rem;
+      height: 25/@rem;
+      vertical-align: middle;
+    }
+    .icon_sender{
+      background: url('@{path}icon_sender_address.png') no-repeat;
+      background-size: 18/@rem 25/@rem;
+    }
+    .icon_receiving{
+      background: url('@{path}icon_sender_address.png') no-repeat;
+      background-size: 18/@rem 25/@rem;
+    }
+    .sender, .receiving{
+      font-size: 22/@rem;
+      color: #808080;
+    }
+    .sender_address, .receiving_address{
+      font-size: 24/@rem;
+      color: #343434;
+    }
+    .middle{
+      width:130/@rem;
+      height: 42/@rem;
+      line-height: 42/@rem;
+      position: relative;
+      overflow: hidden;
+      .plane{
+        display: inline-block;
+        width: 50/@rem;
+        height: 42/@rem;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        margin-top:-21/@rem;
+        background:#fff url('@{path}plane.png') center center no-repeat;
+        background-size:34/@rem 34/@rem;
+        z-index: 1;
+        animation: planeAnimate 3s linear infinite;
+        animation-fill-mode: both;
+      }
+      &:after{
+        content:'';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        height: 2/@rem;
+        margin-top:2/@rem;
+        border-top: 1/@rem #e5e5e5 dashed;
+        z-index: 0;
+      }
+    }
+    .right{
+      text-align: right;
+    }
+  }
+}
+
+
+@keyframes planeAnimate{
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+
+
+}
+
