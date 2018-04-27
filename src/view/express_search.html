@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>查件</title>
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/weui.css">
+  <!-- 插件 -->
+  <link rel="stylesheet" href="../style/express_search.css">
+  <!-- remTopx -->
+  <script src="../js/rem.js"></script>
+</head>
+
+<body>
+
+  <div class="container" id="container">
+    <div class="express_page">
+      <!-- 物流单号查询 -->
+      <div class="express_fd">
+        <div class="logo">
+          <img class="logo_img" src="../images/logo.png" alt="">
+        </div>
+        <div class="flex express_search">
+          <div class="flex_1 search_bar_box">
+            <i class="icon_search"></i>
+            <input type="search" class="search_bar_input" id="js_searchInput" placeholder="请输入订单号或派送单号查询" required>
+            <a href="javascript:;" class="weui_icon_clear" id="js_searchClear"></a>
+          </div>
+          <div class="express_code"></div>
+        </div>
+        <div class="epxress_search_btn">
+          <button class="btn " id="js_searchBtn">查询</button>
+        </div>
+      </div>
+      <!-- 查询历史记录 -->
+      <div class="express_search_history" id="js_express_search">
+        <!-- <div class="title">历史记录</div> -->
+        <!-- <ul>
+          <li class="history">
+            <a href="express_detail.html?id=" class="link">
+                221188670305
+            </a>
+          </li>
+        </ul> -->
+        <!-- <div class="clear_history">清空历史查询单号</div> -->
+      </div>
+    </div>
+  </div>
+
+</body>
+<!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+<script src="../js/zepto.min.js"></script>
+<!-- 封装常用库  -->
+<script src="../js/main.js"></script>
+<script>
+
+  $(function () {
+    // 搜索
+    var $searchBtn = $('#js_searchBtn'),
+        $searchInput = $('#js_searchInput'),
+        $history = $('#js_express_search'),
+        $searchClear = $('#js_searchClear');
+
+    var historyTemplate = '';
+
+    //返回后刷新页面
+    var isPageHide = false;
+    window.addEventListener('pageshow', function () {
+      if (isPageHide) {
+        window.location.reload();
+      }
+    });
+    window.addEventListener('pagehide', function () {
+      isPageHide = true;
+    });
+
+
+    //实时查询
+    var valStr, expressArr = [];
+    expressArr = JSON.parse(window.localStorage.getItem('expressData')) || []; // 字符串转化成json格式 如果没有数据 就是 空数组
+    console.log(expressArr);
+    if(expressArr && expressArr.length > 0){
+      $history.show();
+      $history.innerHtml = '';
+      historyTemplate = historyTmp(expressArr);
+      //添加模板
+      $history.append(historyTemplate);
+    }else{
+      $history.hide();
+    }
+
+    $(document).on('click','#js_searchBtn', function (event) {
+      //获取输入值
+      valStr = $searchInput.val();
+      // 先判断输入的单号是否正确
+      if(checkData(valStr)){
+        // 执行查询方法
+        getData(valStr)
+      }else{
+        $.toptips('请输入正确的订单号或派送单号！','warning')
+      }
+    })
+
+    //清除搜索
+    $searchClear.on('click', function () {
+      $searchInput.val('')
+    })
+
+    // 清楚历史记录
+    $('#js_express_search').on('click','#js_clear_history',function() {
+      $.confirm("确认清空历史查询单号？",function(){
+        // 清空历史记录
+        window.localStorage.clear('expressData');
+        expressArr = [];
+        $history.hide();
+        $.toast("清空成功!");
+      },function(){
+
+      })
+
+    })
+
+
+    // 检测输入的数据方法
+    function checkData(obj){
+      // 去除空格
+      obj = obj.replace(/(^\s*)|(\s*$)/g,'');
+      //限制输入的数据是字母+数字
+      var re = /^[a-zA-Z0-9]+$/;
+      if(!re.test(obj)){
+        return false;
+      }else{
+        return true;
+      }
+    }
+
+    // 执行查询方法
+    function getData(expressId){
+      $.showLoading('正在查询…');
+
+      setTimeout(function() {
+        console.log(expressArr)
+        // 定位查询的数组中的位置
+        var arrIndex = Arrindex(expressArr, expressId)
+        if(arrIndex == -1 ){  // 判断是否有查询的值 如果没有 就添加到历史数组中
+          expressArr.unshift(expressId);
+        }
+
+        if(arrIndex>0){
+          expressArr.splice(arrIndex,1)
+          expressArr.unshift(expressId)
+        }
+        // 存本地之前转化为json字符串
+        expressArr = JSON.stringify(expressArr);
+        // 存储本地
+        localStorage.setItem('expressData', expressArr);
+        $.hideLoading();
+        // window.location.href = 'express_detail.html?id=' + expressId;
+      }, 1000)
+    }
+
+    // 历史记录模板
+    function historyTmp(express_Arr){
+      var liTmp = '';
+      var expressLen = express_Arr.length;
+      if(express_Arr &&  expressLen > 0){
+        for (var i = 0; i < expressLen; i++ ){
+          liTmp += '<li class="history">'
+              +'<a href="/view/express_detail.html?id='+express_Arr[i]+'" target="_blank" class="link">'
+              + express_Arr[i]
+              +'</a>'
+              +'</li>'
+        }
+        return '<div class="title">历史记录</div>'
+        +'<ul>'
+        +liTmp
+        +'</ul>'
+        +'<div class="clear_history" id="js_clear_history">清空历史查询单号</div>';
+      }else {
+        return ;
+      }
+    }
+
+
+  // 数组位置
+  function Arrindex(arr, item){
+    console.log(11, arr)
+    var index = -1; // 先定义一个下标
+    arr.forEach(function(res,i){  // 元素  下标
+        if(res === item && index === -1){
+            index = i;
+        }
+    });
+    return index;
+  };
+
+  })
+
+</script>
+
+</html>

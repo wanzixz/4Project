@@ -62,8 +62,6 @@ $(function () {
     }
   }
 
-
-
   function init() {
     fastClick();
     androidInputBugFix();
@@ -85,7 +83,7 @@ $(function () {
       clearTimeout(timeout); if (!$t.hasClass('weui_toptips_visible')) { $t.show().width(); $t.addClass('weui_toptips_visible'); }
       timeout = setTimeout(function () { $t.remove(); }, duration);
     }
-  }($);
+  } ($);
   //actions
   +function ($) {
     "use strict"; var defaults; var show = function (params) {
@@ -97,7 +95,7 @@ $(function () {
     $.actions = function (params) { params = $.extend({}, defaults, params); show(params); }
     $.closeActions = function () { hide(); }
     $(document).on("tap click", ".weui_actions_mask", function () { $.closeActions(); }); var defaults = $.actions.prototype.defaults = { title: undefined, onClose: undefined, }
-  }($);
+  } ($);
   ; (function ($) {
     $.fn.searchBar = function (options) {
       options = $.extend({ focusingClass: 'weui_search_focusing', searchText: "搜索", cancelText: "取消" }, options); var html = '<div class="weui_search_bar">' +
@@ -122,7 +120,6 @@ $(function () {
   $(function () {
     var weixinimg = []; var weixinsrc = []; weixinimg = $('.weixin'); for (var i = 0; i < weixinimg.length; i++) { weixinsrc[i] = weixinimg[i].src; }; $('.weixin').click(function () { var index = $('.weixin').index(this); wx.previewImage({ current: weixinsrc[index], urls: weixinsrc }); });
   });
-
 
 
 

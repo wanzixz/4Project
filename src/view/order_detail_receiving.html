@@ -9,7 +9,7 @@
   <title>订单详情</title>
   <!-- weui 样式 如果项目有引用 不需要再引入 -->
   <link rel="stylesheet" href="../style/weui.css">
-  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <!-- 订单详情 -->
   <link rel="stylesheet" href="../style/order_detail_demo.css">
   <!-- remTopx -->
   <script src="../js/rem.js"></script>
@@ -19,23 +19,11 @@
 
   <div class="container" id="container">
     <div class="order_detail_page">
-      <!-- 提示 下单成功未收货 -->
-      <div class="order_unreceiving">
-        <i class="weui_icon_info_circle"></i>下单成功请前往门店交货！
-      </div>
-      <!-- 条码 -->
-      <div class="order_code">
-        <div class="code_text">门店交货时，请出示条码</div>
-        <div class="code_img">
-          <img src="../images/code_img.jpg" alt="">
-        </div>
-        <div class="code_number">1780564032565465</div>
-      </div>
       <!-- 订单号 -->
-      <div class="flex order_number">
+      <div class="flex order_number js_copyBtn">
         <div class="text">订单号</div>
-        <div class="flex_1 number">445279822543</div>
-        <div class="tips">未收货</div>
+        <div class="flex_1 number">445279822543<i class="icon_order_copy"></i></div>
+        <div class="tips blue">已签收</div>
       </div>
       <!-- 寄收信息 -->
       <div class="order_address_wrapper">
@@ -61,8 +49,7 @@
               <span class="tel">18615912356</span>
             </div>
             <div class="address_down">
-              <p>
-                <strong class="order_depot">【四方格-铜锣湾自提仓】</strong>广东省深圳市宝安区航空物流园国际货运村201-221</p>
+              <p>广东省深圳市宝安区航空物流园国际货运村201-221</p>
               <p class="address">
                 <span>412826198906286044</span>
                 <span class="upload">(身份证已上传)</span>
@@ -125,9 +112,8 @@
       </div> -->
       <!-- 按钮 -->
       <div class="package_btn_box">
-        <a href="###" class="btn kline gray js_cancelBtn">取消订单</a>
-        <a href="###" class="btn kline blue  margin_left" id="showIOSActionSheet">查看物流</a>
-        <a href="###" class="btn kline yellow margin_left">再来一单</a>
+        <a href="###" class="btn kline yellow  margin_left js_copyBtn">复制订单</a>
+        <a href="express_line.html" class="btn kline blue margin_left ">查看物流</a>
       </div>
 
 
@@ -299,6 +285,11 @@
       $.toast("你选择了第" + id + "条地址");
       // 关闭弹层
       hideActionSheet();
+    })
+
+    //复制订单号
+    $('.js_copyBtn').on('click',function(){
+      $.toptips('订单号复制成功！','info')
     })
 
 

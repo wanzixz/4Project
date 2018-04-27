@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>订单详情</title>
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/weui.css">
+  <!-- 订单详情 -->
+  <link rel="stylesheet" href="../style/order_detail_demo.css">
+  <!-- remTopx -->
+  <script src="../js/rem.js"></script>
+</head>
+
+<body>
+
+  <div class="container" id="container">
+    <div class="order_detail_page">
+      <!-- 提示 下单成功未收货 -->
+      <div class="order_unreceiving">
+        <i class="weui_icon_info_circle"></i>下单成功请前往门店交货！
+      </div>
+      <!-- 条码 -->
+      <div class="order_code">
+        <div class="code_text">门店交货时，请出示条码</div>
+        <div class="code_img">
+          <img src="../images/code_img.jpg" alt="">
+        </div>
+        <div class="code_number">1780564032565465</div>
+      </div>
+      <!-- 订单号 -->
+      <div class="flex order_number js_copyBtn">
+        <div class="text">订单号</div>
+        <div class="flex_1 number">445279822543<i class="icon_order_copy"></i></div>
+        <div class="tips">未收货</div>
+      </div>
+      <!-- 寄收信息 -->
+      <div class="order_address_wrapper">
+        <!-- 寄件信息 -->
+        <div class="flex order_address_info">
+          <div class="left sender"></div>
+          <div class="flex_1 right">
+            <div class="address_up text_ellipsis">
+              <span class="name">比尔盖茨</span>
+              <span class="tel">18615912356</span>
+            </div>
+            <div class="address_down">
+              <p class="address"></p>
+            </div>
+          </div>
+        </div>
+        <!-- 收件信息 -->
+        <div class="flex order_address_info tline">
+          <div class="left receiving"></div>
+          <div class="flex_1 right">
+            <div class="address_up text_ellipsis">
+              <span class="name">比尔盖茨</span>
+              <span class="tel">18615912356</span>
+            </div>
+            <div class="address_down">
+              <p>209 EValley Blvd San Gabriel CA 91776,Los Angeles,California 90015</p>
+              <!-- 此处还有未上传身份证和填写身份证号码的状态 -->
+              <p class="address">
+                <span>412826198906286044</span>
+                <span class="un_upload">(身份证未上传)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 包裹信息 -->
+      <div class="order_package_info">
+        <div class="package_title bline ">
+          包裹信息
+        </div>
+        <ul class="flex package_box">
+          <li class="left word_break">产品服务</li>
+          <li class="flex_1 right">USPS标准服务</li>
+        </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">下单时间</li>
+          <li class="flex_1 right">2017-07-12 14:12</li>
+        </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">购买保险</li>
+          <li class="flex_1 right">A$258</li>
+        </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">申报物品</li>
+          <li class="flex_1 right">6件</li>
+        </ul>
+        <ul class="flex package_box">
+          <li class="left word_break">备注信息</li>
+          <li class="flex_1 right">这里是我填写的备注信息</li>
+        </ul>
+      </div>
+      <div class="order_package_info">
+        <div class="package_title bline margin_bottom20">
+          商品明细
+        </div>
+        <!-- 商品列表 -->
+        <div class="flex package_info_box">
+          <div class="flex_1 name">美素佳儿<span class="shop_name">金装幼儿配方奶粉</span><em class="rule_text">900g</em></div>
+          <div class="count">10件</div>
+        </div>
+        <div class="flex package_info_box">
+          <div class="flex_1 name">美素佳儿<span class="shop_name">金装幼儿配方奶粉</span><em class="rule_text">900g</em></div>
+          <div class="count">2件</div>
+        </div>
+        <div class="flex package_info_box">
+          <div class="flex_1 name">美素佳儿<span class="shop_name">金装幼儿配方奶粉</span><em class="rule_text">900g一段</em></div>
+          <div class="count">1件</div>
+        </div>
+      </div>
+      <!-- 按钮 -->
+      <div class="package_btn_box">
+        <a href="###" class="btn kline gray js_cancelBtn">取消订单</a>
+        <a href="###" class="btn kline blue  margin_left">修改订单</a>
+        <a href="###" class="btn kline yellow margin_left">再来一单</a>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- 自提店 -->
+  <div>
+    <div class="weui_mask" id="iosMask"></div>
+    <div class="weui_actionsheet " id="iosActionsheet">
+      <div class="weui_actionsheet_title">
+        <p class="weui_actionsheet_title_text">选择自提点</p>
+        <i class="icon icon_close" id="actionClose"></i>
+      </div>
+
+      <div class="flex weui_actionsheet_menu">
+        <div class="flex weui_action_tab bline">
+          <div class="flex_1 tab_item current">香港岛</div>
+          <div class="flex_1 tab_item">九龙半岛</div>
+          <div class="flex_1 tab_item">新界</div>
+        </div>
+        <!-- 自提店 列表 -->
+        <div class="flex_1 weui_action_wrapper " style="display: block">
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="1">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
+            </div>
+            <div class="tel word_break">00852-35848036</div>
+          </div>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="2">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
+            </div>
+            <div class="tel word_break">00852-35848036</div>
+          </div>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="3">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
+            </div>
+            <div class="tel word_break">00852-35848036</div>
+          </div>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="4">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
+            </div>
+            <div class="tel word_break">00852-35848036</div>
+          </div>
+          <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="5">
+            <div class="flex_1">
+              <div class="name">四方格-观塘自提仓</div>
+              <div class="address">
+                <i class="icon_address"></i>
+                <span>香港九龙观塘道448-458号观塘</span>
+              </div>
+            </div>
+            <div class="tel word_break">00852-35848036</div>
+          </div>
+        </div>
+        <!-- 空数据 -->
+        <div class="flex_1 weui_action_wrapper ">
+
+        </div>
+        <!-- 空数据 -->
+        <div class="flex_1 weui_action_wrapper ">
+
+        </div>
+        <!-- 自提店 列表 -->
+      </div>
+    </div>
+  </div>
+
+</body>
+<!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+<script src="../js/zepto.min.js"></script>
+<!-- 封装常用库  -->
+<script src="../js/main.js"></script>
+<script>
+
+  $(function () {
+
+    // 取消订单
+    $(document).on("click", ".js_cancelBtn", function () {
+      $.confirm("确定要取消该订单吗?", "", function () {
+        //确定操作
+        $.toast("取消成功!");
+      }, function () {
+        //取消操作
+      });
+    });
+
+    // 自提点
+    var $iosActionsheet = $('#iosActionsheet');
+    var $iosMask = $('#iosMask');
+    var $actionSheetTab = $('.weui_action_tab .tab_item');
+    // 正在加载 dom
+    var loadingTmp = '<div class="weui_loading_wrapper"><span class="weui-loading"></span>正在加载中...</div>';
+    // 暂无数据 dom
+    var noDataTmp = '<div class="weui_loadmore weui_loadmore_line"><span class="weui_loadmore_tips">暂无数据</span></div>';
+
+    $actionSheetTab.on('click', function () {
+      var $this = $(this)
+      itemIndex = $this.index();
+      $this.addClass('current').siblings('.tab_item').removeClass('current');
+      $('.weui_action_wrapper').eq(itemIndex).show().siblings('.weui_action_wrapper').hide();
+      var isData = false // 无数据
+      // loading 和暂无数据
+      if (itemIndex) {
+        fnLoading(itemIndex, isData)
+      }
+
+
+
+
+
+    })
+
+    function fnLoading(itemIndex, isData) {  // 必填 参数 itemIndex 切换索引， 是否有加载到数据 isData 布尔值
+      var $loadMore = $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').length
+      // 切换之前 先删除 loding dom 和 暂无数据dom
+      $('.weui_action_wrapper').eq(itemIndex).find('.weui_loading_wrapper').remove();
+      $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').remove();
+      // 添加加载动画 loading
+      $('.weui_action_wrapper').eq(itemIndex).append(loadingTmp);
+      // 3s 之后 如果数据还没用加载完 移除loading 添加 暂无数据dom
+      var Time = setInterval(function () {
+        $('.weui_action_wrapper').eq(itemIndex).find('.weui_loading_wrapper').remove();
+        // 删除暂无数据dom
+        if (!isData) {
+          $('.weui_action_wrapper').eq(itemIndex).find('.weui_loadmore').remove();
+          $('.weui_action_wrapper').eq(itemIndex).append(noDataTmp)
+        }
+        clearInterval(Time)
+      }, 3000)
+
+    }
+
+    function hideActionSheet() {
+      $iosActionsheet.removeClass('weui_actionsheet_toggle');
+      $iosMask.removeClass('weui_mask_visible');
+    }
+    // 关闭弹层
+    $iosMask.on('click', hideActionSheet);
+    $('#actionClose').on('click', hideActionSheet);
+    // 展示弹层
+    $("#showIOSActionSheet").on("click", function () {
+      $iosActionsheet.addClass('weui_actionsheet_toggle');
+      $iosMask.addClass('weui_mask_visible');
+    });
+
+    // 选择地址
+    $('.js_actionsheetItem').on('click', function () {
+      var id = $(this).data('id')
+      $.toast("你选择了第" + id + "条地址");
+      // 关闭弹层
+      hideActionSheet();
+    })
+
+    //复制订单号
+    $('.js_copyBtn').on('click',function(){
+      $.toptips('订单号复制成功！','info')
+    })
+
+
+
+
+
+  });
+
+
+
+
+</script>
+
+</html>
