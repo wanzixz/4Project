@@ -3,6 +3,7 @@
  * Copyright 2016 Tencent, Inc.
  * Licensed under the MIT license
  */
+ @rem: 100rem;
 @font-face {
     font-weight: normal;
     font-style: normal;
@@ -2343,4 +2344,74 @@ input[type=search]::-webkit-search-results-decoration {
     100% {
         -webkit-transform: rotate3d(0, 0, 1, 360deg);
     }
+}
+
+// 时间轴
+
+.timeline {
+  position: relative;
+}
+.timeline p {
+  color: #888;
+  font-size: 22/@rem;
+}
+.timeline h4 {
+  font-size: 24/@rem;
+  color: #666;
+  font-weight: 400;
+}
+.timeline .recent {
+  font-size: 24/@rem;
+  color: #18b4ed;
+}
+.timeline ul li {
+  list-style: outside none none;
+}
+.timeline-item {
+  position: relative;
+}
+.timeline-item-content {
+  padding: 0 0 30/@rem 36/@rem;
+}
+.timeline-item-head, .timeline-item-head-first {
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  z-index: 99;
+  background-color:#c0c0c0;
+}
+.timeline-item-head {
+  height: 10px;
+  left: 1px;
+  top: 4px;
+  width: 10px;
+}
+.timeline-item-head-first {
+  height: 20px;
+  left: -4px;
+  top: 5px;
+  width: 20px;
+  background-color: #ff7814;
+  box-shadow: 0 0 0 2/@rem #ffeee1;
+}
+.timeline-item-tail {
+  content: "";
+  background-color:#dfdfdf;
+  height: 100%;
+  left: 5px;
+  position: absolute;
+  top: 5px;
+  width: 2px;
+}
+.timeline-item-checked {
+  left: 0;
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+.timeline-item-checked::before {
+  color: #fff;
+  font-size: 12px;
+  width: 20px;
 }
