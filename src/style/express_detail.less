@@ -17,12 +17,13 @@
 }
 // 物流单信息
 .express_detail_info{
-  padding: 0 30/@rem;
+  padding: 0 30/@rem 10/@rem;
   background: #fff;
   .express_line{
     position: relative;
     padding: 16/@rem 0;
     .bline(1,#f1f1f1);
+    margin-bottom: 10/@rem;
     .icon_sender, .icon_receiving{
       display: inline-block;
       width: 18/@rem;
@@ -82,17 +83,71 @@
       text-align: right;
     }
   }
+  .express_order{
+    font-size: 24/@rem;
+    .left{
+      min-width: 4em;
+      color: #808080;
+      text-align:justify;
+      text-align-last: justify;
+      margin-right: 40/@rem;
+    }
+    .middle{
+      color: #343434;
+      &.express_num{
+        color: #1c8bfd;
+      }
+    }
+    .right{
+      min-width: 3em;
+      color: #fa1b1b;
+      &.yellow{
+        color: #f3821e;
+      }
+      &.blue{
+        color: #0c92f9;
+      }
+    }
+  }
+}
+.express_tips{
+  background: #f1f1f1;
+  height: 56/@rem;
+  line-height: 56/@rem;
+  position: relative;
+  text-align: center;
+  &:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    height: 1/@rem;
+    background: #dddddd;
+    margin-top: 28/@rem;
+    margin-left: -45%;
+    z-index: 1;
+  }
+  .text{
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    background: #f1f1f1;
+    padding: 0 30/@rem;
+    font-size: 24/@rem;
+    color: #a0a0a0;
+  }
 }
 
 
+// 飞机动画
 @keyframes planeAnimate{
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-100%) translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(300%);
+    transform: translateX(300%) translate3d(0, 0, 0);
   }
-
 
 }
 
