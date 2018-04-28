@@ -112,7 +112,6 @@
 .express_search_history{
   display:none;
   background: #fff;
-  padding: 0 30/@rem;
   margin-top: 20/@rem;
   .title{
     position: relative;
@@ -120,22 +119,28 @@
     line-height: 55/@rem;
     font-size: 22/@rem;
     color: #343434;
-    .bline(1,#e5e5e5)
+    .bline(1,#e5e5e5);
+    margin: 0 30/@rem;
   }
   ul{
     overflow: hidden;
-    padding-top: 4/@rem;
   }
   .history{
-    margin-top:18/@rem;
-
+    height: 68/@rem;
+    line-height: 68/@rem;
+    position: relative;
+    margin: 0 30/@rem;
+    .bline(1,#e5e5e5);
+    user-select: none;
     &:active{
       background: #f1f1f1;
     }
     .link{
+      display: block;
+      height: 68/@rem;
+      line-height: 68/@rem;
       font-size: 22/@rem;
       color: #343434;
-      line-height: 1.5;
     }
   }
   .clear_history{
@@ -145,7 +150,7 @@
     height: 48/@rem;
     line-height: 48/@rem;
     text-align: center;
-    // user-select: none;
+    user-select: none;
   }
 
 }

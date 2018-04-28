@@ -82,7 +82,6 @@
     //实时查询
     var valStr, expressArr = [];
     expressArr = JSON.parse(window.localStorage.getItem('expressData')) || []; // 字符串转化成json格式 如果没有数据 就是 空数组
-    console.log(expressArr);
     if(expressArr && expressArr.length > 0){
       $history.show();
       $history.innerHtml = '';
@@ -101,7 +100,7 @@
         // 执行查询方法
         getData(valStr)
       }else{
-        $.toptips('请输入正确的订单号或派送单号！','warning')
+        $.toptips('请输入正确的订单号或派送单号！','weui_warn')
       }
     })
 
@@ -143,7 +142,6 @@
       $.showLoading('正在查询…');
 
       setTimeout(function() {
-        console.log(expressArr)
         // 定位查询的数组中的位置
         var arrIndex = Arrindex(expressArr, expressId)
         if(arrIndex == -1 ){  // 判断是否有查询的值 如果没有 就添加到历史数组中
@@ -159,7 +157,7 @@
         // 存储本地
         localStorage.setItem('expressData', expressArr);
         $.hideLoading();
-        // window.location.href = 'express_detail.html?id=' + expressId;
+        window.location.href = 'express_detail.html?id=' + expressId;
       }, 1000)
     }
 
@@ -167,9 +165,13 @@
     function historyTmp(express_Arr){
       var liTmp = '';
       var expressLen = express_Arr.length;
+      // 只显示前5条数据
+      if(expressLen>=5){
+        expressLen = 5;
+      }
       if(express_Arr &&  expressLen > 0){
         for (var i = 0; i < expressLen; i++ ){
-          liTmp += '<li class="history">'
+          liTmp += '<li class="history bline">'
               +'<a href="/view/express_detail.html?id='+express_Arr[i]+'" target="_blank" class="link">'
               + express_Arr[i]
               +'</a>'
@@ -188,7 +190,6 @@
 
   // 数组位置
   function Arrindex(arr, item){
-    console.log(11, arr)
     var index = -1; // 先定义一个下标
     arr.forEach(function(res,i){  // 元素  下标
         if(res === item && index === -1){

@@ -27,16 +27,16 @@
     .icon_sender, .icon_receiving{
       display: inline-block;
       width: 18/@rem;
-      height: 25/@rem;
+      height: 24/@rem;
       vertical-align: middle;
     }
     .icon_sender{
-      background: url('@{path}icon_sender_address.png') no-repeat;
-      background-size: 18/@rem 25/@rem;
+      background: url('@{path}icon_star.png') no-repeat;
+      background-size: 18/@rem 24/@rem;
     }
     .icon_receiving{
-      background: url('@{path}icon_sender_address.png') no-repeat;
-      background-size: 18/@rem 25/@rem;
+      background: url('@{path}icon_end.png') no-repeat;
+      background-size: 18/@rem 24/@rem;
     }
     .sender, .receiving{
       font-size: 22/@rem;
@@ -58,13 +58,16 @@
         height: 42/@rem;
         position: absolute;
         top: 50%;
-        left: 0;
+        left: 50%;
         margin-top:-21/@rem;
+        margin-left: -25/@rem;
         background:#fff url('@{path}plane.png') center center no-repeat;
         background-size:34/@rem 34/@rem;
         z-index: 1;
-        animation: planeAnimate 3s linear infinite;
-        animation-fill-mode: both;
+        &.active{
+          animation: planeAnimate 3s linear infinite;
+          animation-fill-mode: both;
+        }
       }
       &:after{
         content:'';
@@ -75,7 +78,7 @@
         width: 100%;
         height: 2/@rem;
         margin-top:2/@rem;
-        border-top: 1/@rem #e5e5e5 dashed;
+        border-top: 2/@rem #e5e5e5 dashed;
         z-index: 0;
       }
     }
@@ -116,6 +119,7 @@
   line-height: 56/@rem;
   position: relative;
   text-align: center;
+  overflow: hidden;
   &:after{
     content: '';
     position: absolute;
@@ -134,7 +138,7 @@
     z-index: 2;
     background: #f1f1f1;
     padding: 0 30/@rem;
-    font-size: 24/@rem;
+    font-size: 20/@rem;
     color: #a0a0a0;
   }
 }
@@ -145,6 +149,7 @@
     height: 56/@rem;
     line-height: 56/@rem;
     font-size: 24/@rem;
+    color:#585858;
     .bline(1,#f1f1f1);
   }
 }
