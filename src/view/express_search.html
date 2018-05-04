@@ -53,14 +53,7 @@
           <span>历史记录</span>
           <i class="close" id="js_historyLayerClose">×</i>
         </div>
-        <ul class="history_list">
-          <li class="history">
-            <a href="###" class="link">221188670305</a>
-          </li>
-          <li class="history">
-            <a href="###" class="link">221188670305</a>
-          </li>
-        </ul>
+        <div class="history_list"></div>
         <div class="history_clear" id="js_clear_history">清空所有的历史查询单号</div>
       </div>
     </div>
@@ -100,7 +93,7 @@
     if(expressArr && expressArr.length > 0){
       $history.show();
       $history.innerHtml = '';
-      historyTemplate = historyTmp(expressArr);
+      historyTemplate = historyTmp(expressArr, false);
       //添加模板
       $history.append(historyTemplate);
     }else{
@@ -126,11 +119,15 @@
 
     // 查看更多记录
     $history.on('click','#js_history_more', function() {
-      $('.historyLayer').show()
+
+      var historyLayer = '';
+      historyLayer = historyTmp(expressArr, true);
+      $('.historyLayer').show().find('.history_list').append(historyLayer);
     })
 
     // 关闭历史记录窗口
-    $(document).on('click', '#js_historyLayerClose', function(){
+    $('.historyLayer').on('click', '#js_historyLayerClose', function(){
+      $('.historyLayer').find('.history_list ul').remove();
       $('.historyLayer').hide()
     })
 
@@ -187,28 +184,30 @@
     }
 
     // 历史记录模板
-    function historyTmp(express_Arr){
+    function historyTmp(express_Arr, isAll){ // 查询数据列表， 是否是全部数据
       var liTmp = '';
       var expressLen = express_Arr.length;
       // 只显示前5条数据
-      if(expressLen>=5){
+      if(expressLen>=5 && !isAll){
         expressLen = 5;
       }
-      if(express_Arr &&  expressLen > 0){
-        for (var i = 0; i < expressLen; i++ ){
-          liTmp += '<li class="history bline">'
-              +'<a href="/view/express_detail.html?id='+express_Arr[i]+'" target="_blank" class="link">'
-              + express_Arr[i]
-              +'</a>'
-              +'</li>'
-        }
+      for (var i = 0; i < expressLen; i++ ){
+        liTmp += '<li class="history bline">'
+            +'<a href="/view/express_detail.html?id='+express_Arr[i]+'" target="_blank" class="link">'
+            + express_Arr[i]
+            +'</a>'
+            +'</li>'
+      }
+      if(express_Arr &&  !isAll){
         return '<div class="title">历史记录</div>'
         +'<ul>'
         +liTmp
         +'</ul>'
         +'<div class="clear_history" id="js_history_more">查看更多记录></div>';
-      }else {
-        return ;
+      }else if(express_Arr && isAll){
+        return '<ul>'
+        +liTmp
+        +'</ul>';
       }
     }
 

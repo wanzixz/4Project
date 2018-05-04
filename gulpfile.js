@@ -31,7 +31,7 @@ var yargs = require('yargs').options({
 var option = { base: 'src' };
 var dist = __dirname + '/dist';
 
-gulp.task('build:style', function() {
+gulp.task('build:weui', function() {
   var banner = [
     '/*!',
     ' * WeUI v<%= pkg.version %> (<%= pkg.homepage %>)',
@@ -50,7 +50,7 @@ gulp.task('build:style', function() {
       })
     )
     .pipe(postcss([autoprefixer(['iOS >= 7', 'Android >= 4.1']), comments()]))
-    .pipe(header(banner, { pkg: pkg }))
+    // .pipe(header(banner, { pkg: pkg }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(dist))
     .pipe(browserSync.reload({ stream: true }))

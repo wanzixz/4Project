@@ -67,7 +67,6 @@
         z-index: 1;
         &.active{
           animation: planeAnimate 3s linear infinite;
-          animation-fill-mode: both;
         }
       }
       &:after{
@@ -160,11 +159,10 @@
 // 飞机动画
 @keyframes planeAnimate{
   0% {
-    transform: translateX(-100%) translate3d(0, 0, 0);
+    transform:translateX(-100%);
   }
   100% {
-    transform: translateX(300%) translate3d(0, 0, 0);
+    transform: translateX(300%);
   }
 
 }
-

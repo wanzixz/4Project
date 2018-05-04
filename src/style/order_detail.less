@@ -3,6 +3,38 @@
 @path:'../images/';
 
 // 我的订单详情
+.order_detail_page{
+  position: relative;
+  padding-bottom: 120/@rem;
+}
+// 条码
+.order_code{
+  background: #fff;
+  padding: 0 30/@rem;
+  text-align: center;
+  .code_text{
+    padding: 10/@rem 0;
+    font-size: 24/@rem;
+    color: #737373;
+  }
+  .code_img{
+    width: 480/@rem;
+    height: 100/@rem;
+    margin: 0 auto;
+    img{
+      max-width: 100%;
+      width: auto;
+      height: 100/@rem;
+    }
+  }
+  .code_number{
+    line-height: 1.2;
+    padding: 4/@rem 0 20/@rem;
+    font-size: 32/@rem;
+    letter-spacing: 4/@rem;
+    font-weight: bold;
+  }
+}
 
 .order_number{
   height: 62/@rem;
@@ -15,6 +47,15 @@
   }
   .number{
     margin: 0 20/@rem;
+    .icon_order_copy{
+      display: inline-block;
+      width:22/@rem;
+      height: 22/@rem;
+      vertical-align: middle;
+      margin-left: 4/@rem;
+      background: url('@{path}order_copy.png') center center no-repeat;
+      background-size: 22/@rem 22/@rem;
+    }
   }
   .tips{
     color: #fa1b1b;
@@ -93,7 +134,7 @@
 .order_package_info{
   position: relative;
   margin-top: 14/@rem;
-  padding: 0 30/@rem;
+  padding: 0 30/@rem 10/@rem;
   background: #fff;
   .package_title{
     height: 58/@rem;
@@ -103,6 +144,9 @@
     font-size: 24/@rem;
     color: #222;
     font-weight: 400;
+    &.margin_bottom20{
+      margin-bottom: 20/@rem;
+    }
     &.bline{
       .bline(1,#e5e5e5,solid)
     }
@@ -135,82 +179,101 @@
     overflow: hidden;
     .name{
       font-size: 22/@rem;
-      color: #000;
+      color: #737373;
       line-height: 1.2;
+      .shop_name{
+        color: #000;
+      }
+      .rule_text{
+        font-style: normal;
+      }
     }
     .rule{
-      font-size: 22/@rem;
-      color: #fff;
-      padding: 0 15/@rem;
-      border-radius: 3/@rem;
-      background:#adc9ef;
-      margin: 0 30/@rem;
+      position: relative;
+      text-align: left;
+      margin: 0 10/@rem;
+      .rule_text{
+        font-size: 22/@rem;
+        color: #fff;
+        font-style: normal;
+        padding: 0 15/@rem;
+        border-radius: 3/@rem;
+        background:#adc9ef;
+      }
     }
     .count{
+      min-width: 75/@rem;
       font-size: 22/@rem;
+      text-align: right;
     }
   }
-  .package_other_info{
-    align-items:flex-start;
-    position: relative;
-    top: 10/@rem;
-    padding: 15/@rem 0;
-    &.tline{
-      .tline(1,#e5e5e5,solid)
-    }
-    .left{
-      min-width: 4em;
-      font-size: 24/@rem;
-      color: #737373;
-      margin-right: 72/@rem;
-    }
-    .package_textarea{
-      width: 100%;
-      font-size: 24/@rem;
-      min-height: 44/@rem;
-      background: none;
-      -webkit-appearance: none;
-      border:none;
-      &:focus{
-        outline: none;
-      }
-    }
-  }
-  .package_btn_box{
-    padding: 30/@rem 0;
-    text-align: right;
-    .btn{
-      display: inline-block;
-      position: relative;
-      padding:4/@rem 14/@rem;
-      font-size: 24/@rem;
-      color: #0286e3;
-      border-radius: 6/@rem;
-      .kline(2,#0286e3);
-      &:active{
-        color: #fff;
-        background: #0286e3;
-      }
-      &:after{
-        border-radius: 6/@rem;
-      }
-      &.gray{
-        color: #a3a3a3;
-        &:active{
-          color: #585858;
-          background: #f1f1f1;
-        }
-        &:after{
-          border-color: #b5b5b5;
-        }
-      }
-      &.margin_left{
-        margin-left: 24/@rem;
-      }
+
+  .package_textarea{
+    width: 100%;
+    font-size: 24/@rem;
+    color: #737373;
+    min-height: 44/@rem;
+    background: none;
+    -webkit-appearance: none;
+    border:none;
+    &:focus{
+      outline: none;
     }
   }
 
 }
+
+.package_btn_box{
+  position: fixed;
+  width: 100%;
+  height: 60/@rem;
+  left: 0;
+  bottom: 0;
+  background: #f1f1f1;
+  padding: 30/@rem 0;
+  text-align: center;
+  z-index: 1;
+  .btn{
+    display: inline-block;
+    position: relative;
+    padding:8/@rem 28/@rem;
+    font-size: 24/@rem;
+    color: #0286e3;
+    border-radius: 6/@rem;
+    &:after{
+      border-radius: 6/@rem;
+    }
+    &.gray{
+      color: #343434;
+      .kline(2,#b5b5b5);
+      &:active{
+        background: #b5b5b4;
+      }
+      &:after{
+        border-color: #b5b5b5;
+      }
+    }
+    &.blue{
+      color: #fff;
+      background: #0286e3;
+      &:active{
+        background:#0565a9;
+      }
+    }
+    &.yellow{
+      color: #fff;
+      background: #fc9c47;
+      &:active{
+        background:#fb7e0f;
+      }
+    }
+
+    &.margin_left{
+      margin-left: 24/@rem;
+    }
+  }
+}
+
 
 // 自提店
 .weui_actionsheet{
