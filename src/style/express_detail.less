@@ -1,6 +1,7 @@
 /* reset */
 @import "./base/fn";
-@path:'../images/';
+// 飞机动画
+@import './base/animate/animate';
 
 .express_detail_page{
   position: relative;
@@ -153,16 +154,4 @@
     margin-bottom: 20/@rem;
     .bline(1,#f1f1f1);
   }
-}
-
-
-// 飞机动画
-@keyframes planeAnimate{
-  0% {
-    transform:translateX(-100%);
-  }
-  100% {
-    transform: translateX(300%);
-  }
-
 }

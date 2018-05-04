@@ -5,10 +5,161 @@
  * @E-Mail: 471299010@qq.com
  * @Date: 2018-05-04 14:47:41
  * @Last Modified by: zhangliang
- * @Last Modified time: 2018-05-04 14:49:14
+ * @Last Modified time: 2018-05-04 16:04:47
  */
+/*  */
+@import "./base/fn";
+// 飞机动画
+@import './base/animate/animate';
 
  .sned_page{
   position: relative;
  }
+ // 寄件路线
+.send_hd{
+  padding: 0 30/@rem 10/@rem;
+  background: #fff;
+  margin-bottom: 10/@rem;
+  .send_line{
+    position: relative;
+    padding: 16/@rem 0;
+    .bline(1,#f1f1f1);
+    margin-bottom: 10/@rem;
+    .icon_sender{
+      color: #2097fe;
+    }
+    .icon_receiving{
+      color: #fe2020;
+    }
+    .sender, .receiving{
+      font-size: 22/@rem;
+      color: #808080;
+    }
+    .sender_address, .receiving_address{
+      font-size: 24/@rem;
+      color: #343434;
+    }
+    .middle{
+      width:130/@rem;
+      height: 42/@rem;
+      line-height: 42/@rem;
+      position: relative;
+      margin:0 10/@rem;
+      overflow: hidden;
+      .plane{
+        display: inline-block;
+        width: 50/@rem;
+        height: 42/@rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top:-21/@rem;
+        margin-left: -25/@rem;
+        background:#fff url('@{path}plane.png') center center no-repeat;
+        background-size:34/@rem 34/@rem;
+        z-index: 1;
+        &.active{
+          animation: planeAnimate 3s linear infinite;
+        }
+      }
+      &:after{
+        content:'';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        height: 2/@rem;
+        margin-top:2/@rem;
+        border-top: 2/@rem #e5e5e5 dashed;
+        z-index: 0;
+      }
+    }
+    .right{
+      text-align: right;
+    }
+  }
+  .send_product_server{
+    height: 60@rem;
+    line-height: 60/@rem;
+    font-size: 24/@rem;
+    .left{
+      min-width: 6em;
+      color: #474747;
+    }
+    .right{
+      min-width: 6em;
+      color: #a3a3a3;
+      .icon{
+        font-size: 22/@rem;
+      }
+    }
+  }
+}
+
+// 寄件地址
+// 订单详情 物流地址
+.order_address_wrapper{
+  position: relative;
+  background: #fff;
+  padding: 0 30/@rem;
+}
+.order_address_info{
+  position: relative;
+  padding: 15/@rem 0;
+  &.tline{
+    .tline(1,#e5e5e5,solid)
+  }
+  .left{
+    width: 58/@rem;
+    height: 58/@rem;
+    border-radius: 50%;
+    &:after{
+      display: block;
+      width: 58/@rem;
+      height: 58/@rem;
+      line-height: 58/@rem;
+      text-align: center;
+      font-size: 28/@rem;
+      color: #fff;
+      border-radius: 50%;
+    }
+    &.sender:after{
+      content: '寄';
+      background: #1d9cfe;
+    }
+    &.receiving:after{
+      content: '收';
+      background: #fc9c47;
+    }
+  }
+  .right{
+    margin-left: 30/@rem;
+    .address_up{
+      font-size: 24/@rem;
+      color: #222;
+      line-height: 1.5;
+      .name{
+        margin-right: 44/@rem;
+      }
+    }
+    .address_down{
+      line-height: 1.5;
+      font-size: 22/@rem;
+      color: #343434;
+      .order_depot{
+        color: #fc5a1d;
+        font-weight: 400;
+        margin-left:-7px;
+      }
+      .un_upload{
+        color: #f74141;
+      }
+      .upload{
+        color: #1d9cfe;
+      }
+    }
+  }
+}
+
 
