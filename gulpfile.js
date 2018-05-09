@@ -13,6 +13,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var pkg = require('./package.json');
 var imageMini = require('gulp-imagemin');
+// var watchPath = require('gulp-watch-path');
 var yargs = require('yargs').options({
   w: {
     alias: 'watch',
@@ -81,7 +82,7 @@ gulp.task('build:images', function() {
 
 gulp.task('build:js', function() {
   gulp
-    .src('src/js/*.?(js)', option)
+    .src('src/**/*.?(js)', option)
     .pipe(gulp.dest(dist))
     .pipe(browserSync.reload({ stream: true }));
 });
@@ -107,6 +108,16 @@ gulp.task('build:style', function() {
 });
 
 gulp.task('build:view', function() {
+  // gulp.watch('src/view/*.html', function(event){
+  //   var paths = watchPath(event, 'src/', 'dist/');
+
+  //   gutil.log(gutil.colors.green(event.type) + ' ' + paths.srcPath)
+  //   gutil.log('Dist ' + paths.distPath)
+
+  //   gulp.src(paths.srcPath, option)
+  //     .pipe(gulp.dest(paths.distDir))
+  //     .pipe(browserSync.reload({ stream: true }));
+  // })
   gulp
     .src('src/view/*.html', option)
     .pipe(gulp.dest(dist))
@@ -120,7 +131,7 @@ gulp.task('build:', [
   'build:view'
 ]);
 
-gulp.task('release', ['build:images', 'build:style','build:js','build:view']);
+gulp.task('release', ['build:images','build:js','build:style','build:view']);
 
 gulp.task('watch', ['release'], function() {
   gulp.watch('src/style/**/*', ['build:style']);
@@ -134,7 +145,8 @@ gulp.task('server', function() {
   yargs.p = yargs.p || 8080;
   browserSync.init({
     server: {
-      baseDir: './dist'
+      baseDir: './dist',
+      index: './dist/view/myorder.html'
     },
     ui: {
       port: yargs.p + 1,
@@ -151,7 +163,7 @@ gulp.task('server', function() {
 //  -w: 实时监听
 //  -s: 启动服务器
 //  -p: 服务器启动端口，默认8080
-gulp.task('default', ['release'], function() {
+gulp.task('default', ['build:view'], function() {
   if (yargs.s) {
     gulp.start('server');
   }

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>我要寄件</title>
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/weui.css">
+  <!-- 我要寄件的样式 -->
+  <link rel="stylesheet" href="../style/sender.css">
+  <!-- remTopx -->
+  <script src="../js/rem.js"></script>
+</head>
+
+<body >
+
+  <div class="container" id="container">
+    <div class="send_page">
+     <!-- 寄件路线 -->
+     <div class="send_hd">
+        <div class="flex send_line bline">
+          <div class="flex_1 left">
+            <div class="sender_address no_data" data-val="0" id="js_sender_address">
+                <i class="icon icon-68 icon_sender"></i>
+                <span class="text">起运地</span>
+                <i class="icon icon-74"></i>
+            </div>
+          </div>
+          <div class="middle">
+            <span class="plane"></span>
+          </div>
+          <div class="flex_1 right">
+            <div class="receiving_address no_data" data-val="0" id="js_receiving_address">
+              <i class="icon icon-68 icon_receiving"></i>
+              <span class="text">目的地</span>
+              <i class="icon icon-74"></i>
+            </div>
+          </div>
+        </div>
+        <div class="flex send_product_server">
+          <div class="left">产品服务</div>
+          <div class="flex_1 middle"></div>
+          <div class="right no_data" data-val="2" id="js_ztd_service">
+            <span class="text">请选择起运地，目的地后再选择产品服务</span>
+            <i class="icon icon-108"></i>
+          </div>
+        </div>
+        <div class="flex send_product_server tline" style="display:none" id="js_ztd">
+            <div class="left">自提点</div>
+            <div class="flex_1 middle"></div>
+            <div class="right no_data" data-val="2" id="js_ztd_address">
+              <span class="text">请选择自提点</span>
+              <i class="icon icon-108"></i>
+            </div>
+          </div>
+      </div>
+      <!-- 寄件路线 -->
+
+      <!-- 寄件地址 -->
+      <div class="order_address_wrapper">
+        <!-- 寄件信息 -->
+        <div class="flex order_address_info">
+          <div class="left sender"></div>
+          <div class="flex_1 right">
+            <div class="no_address">填写寄件地址</div>
+          </div>
+          <div class="address_book">
+            地址薄
+          </div>
+        </div>
+        <!-- 收件信息 -->
+        <div class="flex order_address_info tline">
+          <div class="left receiving"></div>
+          <div class="flex_1 right">
+            <div class="no_address">填写收件地址</div>
+          </div>
+          <div class="address_book">
+            地址薄
+          </div>
+        </div>
+      </div>
+      <!-- 寄件地址 -->
+
+      <!-- 商品包裹 -->
+      <div class="send_pack_wrap">
+        <div class="flex send_pack_hd">
+          <div class="flex_1 send_add_good rline">
+            <i class="icon icon_sq_good"></i>
+            <span class="text">商品扫描</span>
+          </div>
+          <div class="flex_1 send_add_good">
+            <i class="icon icon_add_good"></i>
+            <span class="text">添加商品</span>
+          </div>
+        </div>
+        <ul class="send_pack_list">
+          <div class="no_data">添加物品后自动显示到下方区域</div>
+        </ul>
+      </div>
+      <!-- 商品包裹 -->
+      <!-- 保险 -->
+      <div class="send_safe_wrap">
+        <div class="flex send_safa_item">
+          <div class="left">保险服务</div>
+          <div class="flex_1 middle"></div>
+          <div class="right">
+            <i class="icon icon-108"></i>
+          </div>
+        </div>
+        <div class="flex send_safa_item tline">
+          <div class="left">运单号</div>
+          <div class="flex_1 middle">
+            <input type="text" class="send_safe_input" placeholder="不填写系统自动生成">
+          </div>
+        </div>
+      </div>
+      <!-- 保险 -->
+
+      <div class="send_btn_wrap">
+        <button class="btn" id="js_send_btn">提交</button>
+      </div>
+
+      <!-- 弹层 -->
+      <div>
+        <div class="weui_mask " id="layerMask"></div>
+         <!-- 起运地 -->
+         <div class="weui_actionsheet " id="js_send_layer">
+          <div class="weui_actionsheet_title">
+            <p class="weui_actionsheet_title_text">起运地</p>
+            <i class="icon icon_close actionClose" ></i>
+          </div>
+          <div class="weui_actionsheet_menu">
+            <ul class="send_layer_list">
+              <li class="send_layer_item tline" data-val="1">
+                澳洲
+              </li>
+              <li class="send_layer_item tline" data-val="2">
+                美洲
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- 起运地 -->
+        <!-- 目的地 -->
+        <div class="weui_actionsheet " id="js_receving_layer">
+            <div class="weui_actionsheet_title">
+              <p class="weui_actionsheet_title_text">目的地</p>
+              <i class="icon icon_close actionClose"></i>
+            </div>
+            <div class="weui_actionsheet_menu">
+              <ul class="send_layer_list">
+                <li class="send_layer_item tline" data-val="1">
+                  中国内地
+                </li>
+                <li class="send_layer_item tline" data-val="2">
+                  中国香港
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- 目的地 -->
+          <!-- 产品服务 -->
+          <div class="weui_actionsheet" id="js_prd_service_layer">
+              <div class="prd_service_actionsheet_title">
+                <p class="title_text">选择产品服务</p>
+                <i class="icon icon-95 actionClose"></i>
+              </div>
+              <div class="prd_service_actionsheet_content">
+                <div class="prd_service_line">
+                  <span class="line_text start">墨尔本</span>><span class="line_text end">中国内地产品服务</span>
+                </div>
+                <div class="prd_service_list clearfix">
+                  <ul class="prd_service_ul" id="js_prd_service_ul">
+                    <li class="prd_service_li selected" data-val="1">经济服务经济</li>
+                    <li class="prd_service_li" data-val="2">快速服务</li>
+                    <li class="prd_service_li" data-val="3">USPS标准服务</li>
+                    <li class="prd_service_li" data-val="4">红酒专线</li>
+                    <li class="prd_service_li" data-val="5">四方专线</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="prd_service_btn">
+                <button class="btn" id="js_prd_service_btn">确定</button>
+              </div>
+          </div>
+          <!-- 产品服务 -->
+      </div>
+      <!-- 弹层 -->
+
+    </div>
+  </div>
+
+</body>
+<!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+<script src="../js/zepto.min.js"></script>
+<!-- 封装常用库  -->
+<script src="../js/main.js"></script>
+<!-- picker -->
+<script src="../js/picker.min.js"></script>
+<!-- city select -->
+<script src="../js/picker-city.js"></script>
+
+<!-- send js -->
+<script src="../js/send/index.js" ></script>
+
+</html>

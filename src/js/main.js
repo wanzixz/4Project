@@ -63,7 +63,7 @@ $(function () {
   }
 
   function init() {
-    fastClick();
+    // fastClick();
     androidInputBugFix();
   }
   // 初始化

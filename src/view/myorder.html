@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
+  <meta name="full-screen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <title>我的订单</title>
+  <!-- weui 样式 如果项目有引用 不需要再引入 -->
+  <link rel="stylesheet" href="../style/weui.css">
+  <!-- 我的订单样式 -->
+  <link rel="stylesheet" href="../style/myorder.css">
+  <!-- remTopx -->
+  <script src="../js/rem.js"></script>
+</head>
+
+<body >
+
+  <div class="container" id="container">
+    <div class="order_page">
+      <div class="page_hd" id="js_page_hd">
+        <!-- 提示 下单成功未收货 -->
+        <div class="order_unreceiving js_orderUnreceiving">
+          <i class="weui_icon_info_circle"></i>下单成功,请前往门店交货！
+        </div>
+        <!-- 导航Tab -->
+        <div class="flex tab_nav">
+          <div class="flex_1 tab_item current">
+            <a href="###" class="tab_link">
+              未收货
+            </a>
+          </div>
+          <div class="flex_1 tab_item">
+            <a href="###" class="tab_link">
+              运输中
+            </a>
+          </div>
+          <div class="flex_1 tab_item ">
+            <a href="###" class="tab_link ">
+              已签收
+            </a>
+          </div>
+        </div>
+        <!-- 搜索 -->
+        <div class="search_bar">
+          <form class="search_bar_form">
+            <div class="search_bar_box">
+              <i class="icon_search"></i>
+              <input type="search" class="search_bar_input" id="js_searchInput" placeholder="输入收件人姓名、手机号、或单号查询
+              " required>
+              <a href="javascript:;" class="weui_icon_clear" id="js_searchClear"></a>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="page_bd">
+        <!-- 订单列表 start -->
+        <div class="order_list_wrapper" style="display: block">
+          <!-- 运输中 -->
+          <ul>
+            <!-- 循环dom -->
+            <!-- <li class="order_list_item">
+              <div class="flex order_hd">
+                <div class="order_hd_left">订单号</div>
+                <div class="flex_1 order_hd_middle text_ellipsis">445279822543</div>
+                <div class="order_hd_right text_ellipsis">身份证未上传</div>
+              </div>
+              <div class="order_bd">
+                <div class="flex order_info">
+                  <div class="order_info_left">收件人</div>
+                  <div class="flex_1 order_info_right text_ellipsis">
+                    <span>克里斯蒂亚诺</span>
+                    <span>13645245624</span>
+                  </div>
+                </div>
+                <div class="flex order_info">
+                  <div class="order_info_left">收件地址</div>
+                  <div class="flex_1 order_info_right text_ellipsis">
+                    <span>深圳市宝安区西乡坪洲地铁站C2</span>
+                  </div>
+                </div>
+              </div>
+              <div class="order_fd">
+                <a href="###" class="order_btn gray">取消订单</a>
+                <a href="###" class="order_btn">复制订单</a>
+                <a href="###" class="order_btn">修改订单</a>
+              </div>
+            </li> -->
+            <!-- 循环dom -->
+          </ul>
+
+          <!-- 暂无数据 -->
+          <!-- <div class="no_data" style="display: none"></div> -->
+          <!-- 暂无数据 -->
+        </div>
+        <!-- 订单列表 end -->
+
+        <div class="order_list_wrapper">
+          <ul></ul>
+        </div>
+
+        <div class="order_list_wrapper">
+          <ul></ul>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</body>
+ <!-- zepto 库 如果项目中有引用 不需要再次引入 -->
+ <script src="../js/zepto.min.js"></script>
+ <!-- 封装常用库  -->
+ <script src="../js/main.js"></script>
+ <!-- 下拉菜单组件 -->
+ <script src="../js/updown.js"></script>
+
+<script>
+  $(function () {
+    // document.body.addEventListener('touchmove', function (e) {
+    //   e.preventDefault();
+    //   return false;
+    // });
+    // tab
+    var itemIndex = 0;
+    var tab1LoadEnd = false,
+      tab2LoadEnd = false,
+      tab3LoadEnd = false;
+
+    //页数
+    var page = 0;
+    // 每页展示10个
+    var size = 10;
+    // 设置pagebd padding-top值
+    var page_hd_H;
+    function pageBd() {
+      page_hd_H = $('#js_page_hd').height();
+      $('.page_bd').css({paddingTop: (page_hd_H) + 'px'})
+    }
+    pageBd();
+
+
+    $('.tab_nav .tab_item').on('click', function () {
+      var $this = $(this);
+
+      itemIndex = $this.index();
+      $this.addClass('current').siblings('.tab_item').removeClass('current');
+      $('.order_list_wrapper').eq(itemIndex).show().siblings('.order_list_wrapper').hide();
+
+      //下拉加载
+      $('.dropload-down').show();
+      // 切换时清空li
+      $('.order_list_wrapper').eq(itemIndex).find('ul').html('');
+      if(itemIndex == 0){
+        // 提示未交货
+        $('.js_orderUnreceiving').show()
+      } else{
+        $('.js_orderUnreceiving').hide()
+      }
+      // 如果选中菜单一
+      if (itemIndex == '0') {
+        pageBd();
+        page = 0;
+        // 如果数据没有加载完
+        if (!tab1LoadEnd) {
+          // 解锁
+          dropload.unlock();
+          dropload.noData(false);
+        } else {
+          // 锁定
+          dropload.lock('down');
+          dropload.noData();
+        }
+        // 如果选中菜单二
+      } else if (itemIndex == '1') {
+        pageBd();
+        page = 0;
+        if (!tab2LoadEnd) {
+          // 解锁
+          dropload.unlock();
+          dropload.noData(false);
+        } else {
+          // 锁定
+          dropload.lock('down');
+          dropload.noData();
+        }
+      }
+      else if (itemIndex == '2') {
+        pageBd();
+        page = 0;
+        if (!tab3LoadEnd) {
+          // 解锁
+          dropload.unlock();
+          dropload.noData(false);
+        } else {
+          // 锁定
+          dropload.lock('down');
+          dropload.noData();
+        }
+      }
+      // 重置
+      dropload.resetload();
+
+    });
+
+    // 搜索
+    var $searchInput = $('#js_searchInput'),
+      $searchClear = $('#js_searchClear');
+    //实时查询
+    var valStr, last, that;
+    $searchInput.on('input', function (event) {
+      that = $(this);
+      last = event.timeStamp;
+      setTimeout(function () {
+        if (last - event.timeStamp == 0) {
+          valStr = that.val()
+          console.log(111, valStr)
+        }
+      }, 1000);
+    })
+    //清除搜索
+    $searchClear.on('click', function () {
+      $searchInput.val('')
+    })
+
+    /*==================*/
+    // 下拉加载
+    var dropload = $('.order_page .page_bd').dropload({
+      // scrollArea: $('body'),
+      autoLoad: true, //自动加载
+      domUp: {
+        domClass: 'dropload-up',
+        domRefresh: '<div class="dropload_refresh"><i class="icon"></i>下拉加载更多</div>',
+        domUpdate: '<div class="dropload_update">释放更新</div>',
+        domLoad: '<div class="dropload_load"><span class="weui-loading"></span>正在加载中...</div>',
+      },
+      domDown: { //上拉
+        domClass: 'dropload-down',
+        domRefresh: '<div class="dropload_refresh"><i class="icon"></i>上拉加载更多</div>',
+        domLoad: '<div class="dropload_load"><span class="weui-loading"></span>正在加载中...</div>',
+        domNoData: '<div class="loading_no_data">没有更多数据了</div>'
+      },
+      loadUpFn: function (me) { //下拉加载跟多
+        page = 1;
+        if (itemIndex == 0) { // 未收货
+          var url = 'http://ons.me/tools/dropload/json.php';
+          var param = {
+            'page': page,
+            'size': size
+          }
+          downGetData(url, 'GET', param, me, itemIndex)
+        } else if (itemIndex == 1) {  // 运输中
+          var url = 'http://ons.me/tools/dropload/json.php?page=' + page + '&size=' + size;
+          downGetData(url, 'GET', '', me, itemIndex)
+        } else if (itemIndex == 2) { // 已收货
+          var url = 'http://ons.me/tools/dropload/json.php?page=' + page + '&size=' + size;
+          downGetData(url, 'GET', '', me, itemIndex)
+        }
+      },
+      loadDownFn: function (me) { //上拉加载更多
+        page++;
+        if (itemIndex == 0) { // 未收货
+          var url = 'http://ons.me/tools/dropload/json.php';
+          var param = {
+            'page': page,
+            'size': size
+          }
+          downGetData(url, 'GET', param, me, itemIndex)
+        } else if (itemIndex == 1) {  // 运输中
+          var url = 'http://ons.me/tools/dropload/json.php?page=' + page + '&size=' + size;
+          downGetData(url, 'GET', '', me, itemIndex)
+        } else if (itemIndex == 2) { // 已收货
+          var url = 'http://ons.me/tools/dropload/json.php?page=' + page + '&size=' + size;
+          downGetData(url, 'GET', '', me, itemIndex)
+        }
+      }
+    });
+    //请求列表数据共用方法
+    function downGetData(url, type, param, me, itemIndex) {  // 请求地址 请求方式 请求参数 渲染模板 me 切换索引号
+      var result = '';
+      $.ajax({
+        type: type,
+        url: url,
+        dataType: 'json',
+        data: param,
+        success: function (data) {
+          var arrLen = data.length;
+          if (itemIndex == 1) {
+            arrLen = 0
+          }
+          if (arrLen > 0) {
+            for (var i = 0; i < arrLen; i++) {
+              //如果是四方格仓库 添加以下dom
+              var Depot = (data[i].id == '2') ? '<strong class="order_depot">【' + data[i].id + '四方格-铜锣湾自提仓' + '】</strong>' : '';
+              var js_editDom = itemIndex == 0 ? '修改订单' : '查看物流';
+
+              var unUpload = (data[i].id == '1') ?'<div class="order_hd_right text_ellipsis">身份证未上传</div>': ''
+
+              result += '<li class="order_list_item " >'
+                + '<div class="flex order_hd js_orderSrc" data-src="/view/order_detail_unsender.html?id=' + i + '">'
+                + '<div class="order_hd_left">订单号</div>'
+                + '<div class="flex_1 order_hd_middle text_ellipsis">445279822543</div>'
+                + unUpload
+                + '</div>'
+                + '<div class="order_bd js_orderSrc" data-src="/view/order_detail_unsender.html?id=' + i + '">'
+                + '<div class="flex order_info">'
+                + '<div class="order_info_left">收件人</div>'
+                + '<div class="flex_1 order_info_right text_ellipsis">'
+                + '<span>克里斯蒂亚诺</span>'
+                + '<span>13645245624</span>'
+                + '</div>'
+                + '</div>'
+                + '<div class="flex order_info">'
+                + '<div class="order_info_left">收件地址</div>'
+                + '<div class="flex_1 order_info_right text_ellipsis">'
+                + '<span>' + Depot + '深圳市宝安区西乡坪洲地铁站C2</span>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+                + '<div class="order_fd">'
+                + '<a href="###" data-index="' + i + '" class="order_btn gray js_cancelBtn">取消订单</a>'
+                + '<a href="###" class="order_btn js_copyBtn">复制订单</a>'
+                + '<a href="###" class="order_btn js_editBtn">' + js_editDom + '</a>'
+                + '</div>'
+                + '</li>';
+            }
+            // 如果没有数据
+          } else {
+            if (page == 1) {  //如果第一页没有数据
+              result = '<div class="no_data" ></div>'
+              $('.dropload-down').hide();
+            }
+            // 锁定
+            me.lock();
+            // 无数据
+            me.noData();
+          }
+          // 为了测试，延迟1秒加载
+          setTimeout(function () {
+            if (page == 1) {
+              $('.order_list_wrapper').eq(itemIndex).find('ul').html('');
+            }
+            $('.order_list_wrapper').eq(itemIndex).find('ul').append(result);
+            // 每次数据加载完，必须重置
+            me.resetload();
+          }, 1000);
+        },
+        error: function (xhr, type) {
+          alert('network error!');
+          // 即使加载出错，也得重置
+          me.resetload();
+        }
+      });
+    }
+    //地址跳转
+    $('.order_list_wrapper').on('click', '.js_orderSrc', function () {
+      var src = $(this).data('src');
+      window.location.href = src
+    })
+    // 修改订单 无法修改提示
+    $(document).on('click', '.js_editBtn', function () {
+      $.alert("包裹已出库,无法修改地址,请联系客服!", "");
+
+    })
+    // 取消订单
+    $(document).on("click", ".js_cancelBtn", function () {
+      var index = $(this).data('index')
+      console.log(index);
+      $.confirm("确定要取消该订单吗?", "", function () {
+        $.toast("取消成功!");
+      }, function () {
+        //取消操作
+      });
+    });
+
+
+  })
+</script>
+
+</html>

@@ -23,19 +23,28 @@
       <div class="send_hd">
         <div class="flex send_line bline">
           <div class="flex_1 left">
-            <div class="sender_address no_data" id='js_sender_address'>
-                <i class="icon icon-68 icon_sender"></i>
-                <span class="text" >起运地</span>
-                <i class="icon icon-74"></i>
+            <div class="sender">
+              <i class="icon icon-68 icon_sender"></i>
+              <span>起运地</span>
+            </div>
+            <div class="sender_address" id='js_sender_address'>
+              <i class="icon icon-74"></i>
+              <!-- <input class="weui_input" type="text" value="" placeholder="起运地" id='js_sender_address' /> -->
+              <span class="text" >(悉尼)澳大利亚</span>
+
             </div>
           </div>
           <div class="middle">
-            <span class="plane"></span>
+            <span class="plane active"></span>
           </div>
           <div class="flex_1 right">
-            <div class="receiving_address no_data">
+            <div class="receiving">
+              <span>目的地</span>
               <i class="icon icon-68 icon_receiving"></i>
-              <span class="text">目的地</span>
+            </div>
+            <div class="receiving_address">
+              <!-- <input class="weui_input" type="text" value="" placeholder="目的地" id='js_receiving_address'> -->
+              <span class="text">(中国)深圳</span>
               <i class="icon icon-74"></i>
             </div>
           </div>
@@ -44,7 +53,7 @@
           <div class="left">产品服务</div>
           <div class="flex_1 middle"></div>
           <div class="right">
-            <span>请选择起运地，目的地后再选择产品服务</span>
+            <span>香港自提</span>
             <i class="icon icon-108"></i>
           </div>
         </div>
@@ -73,7 +82,6 @@
         <div class="flex order_address_info tline">
           <div class="left receiving"></div>
           <div class="flex_1 right">
-            <div class="no_address">填写收件地址</div>
             <div class="address_up text_ellipsis">
               <span class="name">比尔盖茨</span>
               <span class="tel">18615912356</span>
@@ -83,6 +91,7 @@
               <!-- 此处还有未上传身份证和填写身份证号码的状态 -->
               <p class="address">
                 <span>412826198906286044</span>
+                <span class="un_upload">(身份证未上传)</span>
               </p>
             </div>
           </div>
