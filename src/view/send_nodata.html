@@ -15,18 +15,18 @@
   <script src="../js/rem.js"></script>
 </head>
 
-<body >
+<body>
 
   <div class="container" id="container">
     <div class="send_page">
-     <!-- 寄件路线 -->
-     <div class="send_hd">
+      <!-- 寄件路线 -->
+      <div class="send_hd">
         <div class="flex send_line bline">
           <div class="flex_1 left">
             <div class="sender_address no_data" data-val="0" id="js_sender_address">
-                <i class="icon icon-68 icon_sender"></i>
-                <span class="text">起运地</span>
-                <i class="icon icon-74"></i>
+              <i class="icon icon-68 icon_sender"></i>
+              <span class="text">起运地</span>
+              <i class="icon icon-74"></i>
             </div>
           </div>
           <div class="middle">
@@ -49,13 +49,13 @@
           </div>
         </div>
         <div class="flex send_product_server tline" style="display:none" id="js_ztd">
-            <div class="left">自提点</div>
-            <div class="flex_1 middle"></div>
-            <div class="right no_data" data-val="2" id="js_ztd_address">
-              <span class="text">请选择自提点</span>
-              <i class="icon icon-108"></i>
-            </div>
+          <div class="left">自提点</div>
+          <div class="flex_1 middle"></div>
+          <div class="right no_data" data-val="2" id="js_ztd_address">
+            <span class="text">请选择自提点</span>
+            <i class="icon icon-108"></i>
           </div>
+        </div>
       </div>
       <!-- 寄件路线 -->
 
@@ -126,19 +126,25 @@
       <!-- 弹层 -->
       <div>
         <div class="weui_mask " id="layerMask"></div>
-         <!-- 起运地 -->
-         <div class="weui_actionsheet " id="js_send_layer">
+        <!-- 起运地 -->
+        <div class="weui_actionsheet " id="js_send_layer">
           <div class="weui_actionsheet_title">
             <p class="weui_actionsheet_title_text">起运地</p>
-            <i class="icon icon_close actionClose" ></i>
+            <i class="icon icon_close actionClose"></i>
           </div>
           <div class="weui_actionsheet_menu">
             <ul class="send_layer_list">
               <li class="send_layer_item tline" data-val="1">
-                澳洲
+                墨尔本
               </li>
               <li class="send_layer_item tline" data-val="2">
-                美洲
+                悉尼
+              </li>
+              <li class="send_layer_item tline" data-val="3">
+                澳洲珀斯
+              </li>
+              <li class="send_layer_item tline" data-val="4">
+                阿德莱德
               </li>
             </ul>
           </div>
@@ -146,47 +152,128 @@
         <!-- 起运地 -->
         <!-- 目的地 -->
         <div class="weui_actionsheet " id="js_receving_layer">
-            <div class="weui_actionsheet_title">
-              <p class="weui_actionsheet_title_text">目的地</p>
-              <i class="icon icon_close actionClose"></i>
-            </div>
-            <div class="weui_actionsheet_menu">
-              <ul class="send_layer_list">
-                <li class="send_layer_item tline" data-val="1">
-                  中国内地
-                </li>
-                <li class="send_layer_item tline" data-val="2">
-                  中国香港
-                </li>
-              </ul>
-            </div>
+          <div class="weui_actionsheet_title">
+            <p class="weui_actionsheet_title_text">目的地</p>
+            <i class="icon icon_close actionClose"></i>
           </div>
-          <!-- 目的地 -->
-          <!-- 产品服务 -->
-          <div class="weui_actionsheet" id="js_prd_service_layer">
-              <div class="prd_service_actionsheet_title">
-                <p class="title_text">选择产品服务</p>
-                <i class="icon icon-95 actionClose"></i>
-              </div>
-              <div class="prd_service_actionsheet_content">
-                <div class="prd_service_line">
-                  <span class="line_text start">墨尔本</span>><span class="line_text end">中国内地产品服务</span>
-                </div>
-                <div class="prd_service_list clearfix">
-                  <ul class="prd_service_ul" id="js_prd_service_ul">
-                    <li class="prd_service_li selected" data-val="1">经济服务经济</li>
+          <div class="weui_actionsheet_menu">
+            <ul class="send_layer_list">
+              <li class="send_layer_item tline" data-val="1">
+                中国内地
+              </li>
+              <li class="send_layer_item tline" data-val="2">
+                中国香港
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- 目的地 -->
+        <!-- 产品服务 -->
+        <div class="weui_actionsheet" id="js_prd_service_layer">
+          <div class="prd_service_actionsheet_title">
+            <p class="title_text">选择产品服务</p>
+            <i class="icon icon-95 actionClose"></i>
+          </div>
+          <div class="prd_service_actionsheet_content">
+            <div class="prd_service_line">
+              <span class="line_text start">墨尔本</span>>
+              <span class="line_text end">中国内地产品服务</span>
+            </div>
+            <div class="prd_service_list clearfix">
+              <ul class="prd_service_ul" id="js_prd_service_ul">
+                <!-- <li class="prd_service_li selected" data-val="1">经济服务经济</li>
                     <li class="prd_service_li" data-val="2">快速服务</li>
                     <li class="prd_service_li" data-val="3">USPS标准服务</li>
                     <li class="prd_service_li" data-val="4">红酒专线</li>
-                    <li class="prd_service_li" data-val="5">四方专线</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="prd_service_btn">
-                <button class="btn" id="js_prd_service_btn">确定</button>
-              </div>
+                    <li class="prd_service_li" data-val="5">四方专线</li> -->
+                <li class="prd_service_li_nodata">暂未开通产品服务！</li>
+              </ul>
+            </div>
           </div>
-          <!-- 产品服务 -->
+          <div class="weui_btn_wrap">
+            <button class="btn" id="js_prd_service_btn">确定</button>
+          </div>
+        </div>
+        <!-- 产品服务 -->
+        <!-- 自提店 -->
+        <div class="weui_actionsheet " id="js_ztd_layer">
+          <div class="ztd_actionsheet_title">
+            <p class="title_text">选择自提点</p>
+            <i class="icon icon-95 actionClose"></i>
+          </div>
+
+          <div class=" flex weui_actionsheet_menu" id="js_ztd_menu">
+            <div class="flex weui_action_tab bline">
+              <div class="flex_1 tab_item current">香港岛</div>
+              <div class="flex_1 tab_item">九龙半岛</div>
+              <div class="flex_1 tab_item">新界</div>
+            </div>
+            <!-- 自提店 列表 -->
+            <div class="flex_1 weui_action_wrapper " style="display: block">
+              <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="1">
+                <div class="flex_1">
+                  <div class="name">四方格-观塘自提仓</div>
+                  <div class="address">
+                    <i class="icon_address"></i>
+                    <span>香港九龙观塘道448-458号观塘</span>
+                  </div>
+                </div>
+                <div class="tel word_break">00852-35848036</div>
+              </div>
+              <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="2">
+                <div class="flex_1">
+                  <div class="name">四方格-观塘自提仓</div>
+                  <div class="address">
+                    <i class="icon_address"></i>
+                    <span>香港九龙观塘道448-458号观塘</span>
+                  </div>
+                </div>
+                <div class="tel word_break">00852-35848036</div>
+              </div>
+              <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="3">
+                <div class="flex_1">
+                  <div class="name">四方格-观塘自提仓</div>
+                  <div class="address">
+                    <i class="icon_address"></i>
+                    <span>香港九龙观塘道448-458号观塘</span>
+                  </div>
+                </div>
+                <div class="tel word_break">00852-35848036</div>
+              </div>
+              <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="4">
+                <div class="flex_1">
+                  <div class="name">四方格-观塘自提仓</div>
+                  <div class="address">
+                    <i class="icon_address"></i>
+                    <span>香港九龙观塘道448-458号观塘</span>
+                  </div>
+                </div>
+                <div class="tel word_break">00852-35848036</div>
+              </div>
+              <div class="flex weui_actionsheet_item bline js_actionsheetItem" data-id="5">
+                <div class="flex_1">
+                  <div class="name">四方格-观塘自提仓</div>
+                  <div class="address">
+                    <i class="icon_address"></i>
+                    <span>香港九龙观塘道448-458号观塘</span>
+                  </div>
+                </div>
+                <div class="tel word_break">00852-35848036</div>
+              </div>
+            </div>
+            <!-- 空数据 -->
+            <div class="flex_1 weui_action_wrapper "></div>
+            <!-- 空数据 -->
+            <div class="flex_1 weui_action_wrapper "></div>
+            <!-- 自提店 列表 -->
+            <!-- 提交按钮 -->
+            <div class="weui_btn_wrap">
+              <button class="btn" id="js_ztd_btn">确定</button>
+            </div>
+          </div>
+        </div>
+        <!-- 自提店 -->
+
       </div>
       <!-- 弹层 -->
 
@@ -204,6 +291,6 @@
 <script src="../js/picker-city.js"></script>
 
 <!-- send js -->
-<script src="../js/send/index.js" ></script>
+<script src="../js/send/index.js"></script>
 
 </html>
